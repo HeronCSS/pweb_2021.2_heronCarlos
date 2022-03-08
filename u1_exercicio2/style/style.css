@@ -1,4 +1,58 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
+  margin: 0px;
+}
+
+.div {
+  background-color: rgb(68, 68, 68);
+}
+
+.b {
+  border: 10px solid rgb(68, 68, 68);
+  
+}
+
+.inicio{
+  
+  cursor:pointer;
+  background: rgb(68, 68, 68);
+  color: white;
+  
+}
+
+.adicionar-pessoas {
+  background-color: rgb(4, 170, 109);
+  border: 10px solid rgb(4, 170, 109);
+  cursor:pointer;
+  color: white;
+}
+
+.listar-pessoas {
+  cursor:pointer;
+  background: rgb(68, 68, 68);
+  color: white;
+}
+
+.canais-noticia {
+  cursor:pointer;
+  background: rgb(68, 68, 68);
+  color: white;
+}
+
+.mande-email {
+  cursor:pointer;
+  background: rgb(68, 68, 68);
+  color: white;
+}
+
+.sobre-site {
+  cursor:pointer;
+  background: rgb(68, 68, 68);
+  color: white;
+  float: right;
+  
+}
+
+h1{
+  margin: 3% 2%;
 }
