@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt_br">
+
 <head>
     <title>PWeb - by Xico Arruda</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
+    <div class="div">
+        <a href="index.html"><button>Inicio</button></a>
+        <a href="adicionarPessoa.html"><button class="adicionar-pessoas">Adicionar pessoa</button></a>
+        <a href="listarPessoas.html"><button>Listar pessoas</button></a>
+        <a href="noticias.html"><button>Canais de noticia</button></a>
+        <a href="contato.html"><button>Mande um e-Mail</button></a>
+        <a href="sobre.html"><button class="sobre-site">Sobre o site</button></a>
+    </div>
+    <div class="div2">
+        <h1>Formulário para cadastro de pessoas:</h1>
+    </div>
+    <form action="editarPessoa.html" target="_self">
+        <div class="parte1">
+            <p>Nome Completo *: <input placeholder="Seu nome completo" type="text"></p>
+            <p>Data de Nascimento *: <input type="date"></p>
+            <p>e-Mail *: <input type="text" placeholder="nome@dominio.com"></p>
+            <p>Sexo *:</p>
+            <p>Masculino</p><input type="radio" name="radio">
+            <p>Feminino</p><input type="radio" name="radio">
+            <p>Não informar</p><input type="radio" name="radio">
+        </div>
 
+        <div class="input">
+            <input type="reset" value="Limpar" id="limpar"> <input type="submit" value="Cadastrar!" id="cadastrar">
+            <p>* Campo obrigatório</p>
+        </div>
+    </form>
 </body>
 
 </html>

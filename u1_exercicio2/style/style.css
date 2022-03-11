@@ -4,55 +4,145 @@ body {
 }
 
 .div {
-  background-color: rgb(68, 68, 68);
-}
-
-.b {
-  border: 10px solid rgb(68, 68, 68);
-  
-}
-
-.inicio{
-  
-  cursor:pointer;
-  background: rgb(68, 68, 68);
-  color: white;
-  
-}
-
-.adicionar-pessoas {
   background-color: rgb(4, 170, 109);
+  height: auto;
+}
+
+button {
+  cursor:pointer;
+  background: rgb(4, 170, 109);
+  color: white;
   border: 10px solid rgb(4, 170, 109);
+  padding: 0;
+  margin-left: -4px;
+}
+
+button:hover {
+  background-color: rgb(193, 183, 182);
+  border: 10px solid rgb(193, 183, 182);
+  cursor:pointer;
+  color: white;
+  padding: 0;
+}
+
+.inicio { /*index*/
+  background-color: rgb(193, 183, 182);
+  border: 10px solid rgb(193, 183, 182);
+  cursor:pointer;
+  color: white;
+  margin-right: -1px;
+}
+
+.adicionar-pessoas { /*adicionarPessoa e adicionadaComSucesso*/
+  background-color: rgb(193, 183, 182);
+  border: 10px solid rgb(193, 183, 182);
+  cursor:pointer;
+  color: white;
+  margin-left: -5px;
+}
+
+.listar {
+  background-color: rgb(193, 183, 182);
+  border: 10px solid rgb(193, 183, 182);
+  cursor:pointer;
+  color: white;
+  margin-right: -1px;
+}
+
+.noticia {
+  background-color: rgb(193, 183, 182);
+  border: 10px solid rgb(193, 183, 182);
+  cursor:pointer;
+  color: white;
+  margin-left: -5px;
+}
+
+.contato {
+  background-color: rgb(193, 183, 182);
+  border: 10px solid rgb(193, 183, 182);
   cursor:pointer;
   color: white;
 }
 
-.listar-pessoas {
+.sobre-site { /*Para todas as paginas*/
   cursor:pointer;
-  background: rgb(68, 68, 68);
-  color: white;
-}
-
-.canais-noticia {
-  cursor:pointer;
-  background: rgb(68, 68, 68);
-  color: white;
-}
-
-.mande-email {
-  cursor:pointer;
-  background: rgb(68, 68, 68);
-  color: white;
-}
-
-.sobre-site {
-  cursor:pointer;
-  background: rgb(68, 68, 68);
+  background: rgb(4, 170, 109);
   color: white;
   float: right;
   
 }
 
-h1{
-  margin: 3% 2%;
+.sobre-site1 {
+  background-color: rgb(193, 183, 182);
+  border: 10px solid rgb(193, 183, 182);
+  cursor:pointer;
+  color: white;
+  float: right;
+}
+
+.div2 {
+  margin: 1% 2%;
+}
+
+.hidratese {
+  text-align: center;
+}
+
+.imgDiv {
+  text-align: center;
+  margin-top: -20px;
+}
+
+.hidrateseImg {
+  height: 50%;
+  width: 50%;
+}
+
+.input {
+  margin-bottom: 3%;
+  margin: 2%;
+  
+}
+
+#limpar {
+  background: rgb(76, 175, 80);
+  color: white;
+  border: 10px solid rgb(76, 175, 80);
+}
+
+#cadastrar {
+  background: rgb(76, 175, 80);
+  color: white;
+  border: 10px solid rgb(76, 175, 80);
+}
+
+input {
+  margin-top: -20px;
+}
+
+.parte1 {
+  margin: 2%;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+
+td {
+  border-bottom: 1px solid gray;
+  text-align: left;
+  width: 10%;
+  
+}
+
+th {
+  border-bottom: 1px solid gray;
+  text-align: left;
+}
+#tr1 {
+  background-color: rgb(245, 245, 245);
+}
+
+table {
+  margin: 2%;
+  border-spacing: 0px;
 }
