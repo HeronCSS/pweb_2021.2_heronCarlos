@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CadpessoasHeronApplication<cadpessoas_heron>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.heron.cadpessoas.cadpessoas_heron.CadpessoasHeronApplication",
+            "projectName": "cadpessoas_heron",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

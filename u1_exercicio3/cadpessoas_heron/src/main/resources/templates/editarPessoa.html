@@ -7,19 +7,19 @@
 
 <body>
     <div class="div">
-        <a href="index.html"><button>Inicio</button></a>
+        <a href="index.html"><button>Início</button></a>
         <a href="adicionarPessoa.html"><button class="adicionar-pessoas">Adicionar pessoa</button></a>
         <a href="listarPessoas.html"><button>Listar pessoas</button></a>
-        <a href="noticias.html"><button>Canais de noticia</button></a>
+        <a href="noticias.html"><button>Canais de notícia</button></a>
         <a href="contato.html"><button>Mande um e-Mail</button></a>
         <a href="sobre.html"><button class="sobre-site">Sobre o site</button></a>
     </div>
     <div class="div2">
         <h1>Formulário para edição de pessoas:</h1>
     </div>
-    <form>
+    <form th:action="@{/adicionarPessoa/editar/" th:object="${pessoa}" method="post">
         <div class="parte1">
-            <p>Nome Completo *: <input placeholder="Seu nome completo" type="text"></p>
+            <p>Nome Completo *: <input placeholder="Seu nome completo" type="text" value="${pessoa.nome}"></p>
             <p>Data de Nascimento *: <input type="date"></p>
             <p>e-Mail *: <input type="text" placeholder="nome@dominio.com"></p>
             <p>Sexo *:</p>
