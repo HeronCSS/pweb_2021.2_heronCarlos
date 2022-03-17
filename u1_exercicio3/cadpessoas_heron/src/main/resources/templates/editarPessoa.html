@@ -2,30 +2,31 @@
 <html lang="pt_br">
 <head>
     <title>PWeb - by Xico Arruda</title>
-    <link rel="stylesheet" href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="shortcut icon" href="/imagens/xico.ico">
 </head>
 
 <body>
     <div class="div">
-        <a href="index.html"><button>Início</button></a>
-        <a href="adicionarPessoa.html"><button class="adicionar-pessoas">Adicionar pessoa</button></a>
-        <a href="listarPessoas.html"><button>Listar pessoas</button></a>
-        <a href="noticias.html"><button>Canais de notícia</button></a>
-        <a href="contato.html"><button>Mande um e-Mail</button></a>
-        <a href="sobre.html"><button class="sobre-site">Sobre o site</button></a>
+        <a th:href="@{/inicio}"><button>Início</button></a>
+        <a th:href="@{/adicionarPessoa}"><button class="adicionar-pessoas">Adicionar pessoa</button></a>
+        <a th:href="@{/adicionarPessoa/listar}"><button>Listar pessoas</button></a>
+        <a th:href="@{/noticias}"><button>Canais de notícia</button></a>
+        <a th:href="@{/mandarEmail}"><button>Mande um e-Mail</button></a>
+        <a th:href="@{/sobreSite}"><button class="sobre-site">Sobre o site</button></a>
     </div>
     <div class="div2">
         <h1>Formulário para edição de pessoas:</h1>
     </div>
-    <form th:action="@{/adicionarPessoa/editar/" th:object="${pessoa}" method="post">
+    <form th:action="@{/adicionarPessoa/editar/{id}(id=${pessoaSalva.id_pessoa})}" th:object="${pessoaSalva}" method="post">
         <div class="parte1">
-            <p>Nome Completo *: <input placeholder="Seu nome completo" type="text" value="${pessoa.nome}"></p>
-            <p>Data de Nascimento *: <input type="date"></p>
-            <p>e-Mail *: <input type="text" placeholder="nome@dominio.com"></p>
+            <p>Nome Completo *: <input placeholder="Seu nome completo" type="text"  th:value="${pessoaSalva.nome}"           th:field="*{nome}"></p>
+            <p>Data de Nascimento *: <input type="date"                             th:value="${pessoaSalva.dataNascimento}" th:field="*{dataNascimento}"></p>
+            <p>e-Mail *: <input type="text" placeholder="nome@dominio.com"          th:value="${pessoaSalva.email}"          th:field="*{email}"></p>
             <p>Sexo *:</p>
-            <p>Masculino</p><input type="radio" name="radio">
-            <p>Feminino</p><input type="radio" name="radio">
-            <p>Não informar</p><input type="radio" name="radio">
+            <p>Masculino</p><input type="radio" name="radio"    th:field="*{sexo}" value="masculino">
+            <p>Feminino</p><input type="radio" name="radio"     th:field="*{sexo}" value="feminino">
+            <p>Não informar</p><input type="radio" name="radio" th:field="*{sexo}" value="não informar">
         </div>
 
         <div class="input">

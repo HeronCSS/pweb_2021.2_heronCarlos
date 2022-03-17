@@ -2,17 +2,18 @@
 <html lang="pt_br">
 <head>
     <title>PWeb - by Xico Arruda</title>
-    <link rel="stylesheet" href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="shortcut icon" href="/imagens/xico.ico">
 </head>
 
 <body>
     <div class="div">
-        <a href="index.html"><button>Inicio</button></a>
-        <a href="adicionarPessoa.html"><button>Adicionar pessoa</button></a>
-        <a href="listarPessoas.html"><button>Listar pessoas</button></a>
-        <a href="noticias.html"><button>Canais de noticia</button></a>
-        <a href="contato.html"><button class="contato">Mande um e-Mail</button></a>
-        <a href="sobre.html"><button class="sobre-site">Sobre o site</button></a>
+        <a th:href="@{/inicio}"><button>Inicio</button></a>
+        <a th:href="@{/adicionarPessoa}"><button>Adicionar pessoa</button></a>
+        <a th:href="@{/adicionarPessoa/listar}"><button>Listar pessoas</button></a>
+        <a th:href="@{/noticias}"><button>Canais de noticia</button></a>
+        <a th:href="@{/mandarEmail}"><button class="contato">Mande um e-Mail</button></a>
+        <a th:href="@{/sobreSite}"><button class="sobre-site">Sobre o site</button></a>
     </div>
     <div class="div2">
         <h1><a href="mailto:heron.santos@alunos.ufersa.edu.br">Mande um e-Mail para mim!</a></h1>

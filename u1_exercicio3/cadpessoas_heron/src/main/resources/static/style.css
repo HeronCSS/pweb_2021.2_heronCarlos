@@ -3,10 +3,18 @@ body {
   margin: 0px;
 }
 
+/*Divs*/
+
 .div {
   background-color: rgb(4, 170, 109);
   height: auto;
 }
+
+.div2 {
+  margin: 1% 2%;
+}
+
+/*Botões*/
 
 button {
   cursor:pointer;
@@ -25,63 +33,14 @@ button:hover {
   padding: 0;
 }
 
-.inicio { /*index*/
+/*Inicio e Listar Pessoas*/
+
+.inicio, .listar {
   background-color: rgb(193, 183, 182);
   border: 10px solid rgb(193, 183, 182);
   cursor:pointer;
   color: white;
   margin-right: -1px;
-}
-
-.adicionar-pessoas { /*adicionarPessoa e adicionadaComSucesso*/
-  background-color: rgb(193, 183, 182);
-  border: 10px solid rgb(193, 183, 182);
-  cursor:pointer;
-  color: white;
-  margin-left: -5px;
-}
-
-.listar {
-  background-color: rgb(193, 183, 182);
-  border: 10px solid rgb(193, 183, 182);
-  cursor:pointer;
-  color: white;
-  margin-right: -1px;
-}
-
-.noticia {
-  background-color: rgb(193, 183, 182);
-  border: 10px solid rgb(193, 183, 182);
-  cursor:pointer;
-  color: white;
-  margin-left: -5px;
-}
-
-.contato {
-  background-color: rgb(193, 183, 182);
-  border: 10px solid rgb(193, 183, 182);
-  cursor:pointer;
-  color: white;
-}
-
-.sobre-site { /*Para todas as paginas*/
-  cursor:pointer;
-  background: rgb(4, 170, 109);
-  color: white;
-  float: right;
-  
-}
-
-.sobre-site1 {
-  background-color: rgb(193, 183, 182);
-  border: 10px solid rgb(193, 183, 182);
-  cursor:pointer;
-  color: white;
-  float: right;
-}
-
-.div2 {
-  margin: 1% 2%;
 }
 
 .hidratese {
@@ -98,27 +57,66 @@ button:hover {
   width: 50%;
 }
 
+/*Adicionar Pessoas e Canais de Noticias*/
+
+.adicionar-pessoas, .noticia { 
+  background-color: rgb(193, 183, 182);
+  border: 10px solid rgb(193, 183, 182);
+  cursor:pointer;
+  color: white;
+  margin-left: -5px;
+}
+
+/*Mande um Email*/
+
+.contato {
+  background-color: rgb(193, 183, 182);
+  border: 10px solid rgb(193, 183, 182);
+  cursor:pointer;
+  color: white;
+}
+
+/*Sobre o site*/
+
+.sobre-site { /*Para todas as paginas*/
+  cursor:pointer;
+  background: rgb(4, 170, 109);
+  color: white;
+  float: right;
+  
+}
+
+.sobre-site1 { /*Especifico para a pagina sobre o site*/
+  background-color: rgb(193, 183, 182);
+  border: 10px solid rgb(193, 183, 182);
+  cursor:pointer;
+  color: white;
+  float: right;
+}
+
+/*Botões das paginas de cadastro*/
+
+#limpar, #cadastrar {
+  background: rgb(76, 175, 80);
+  color: white;
+  border: 10px solid rgb(76, 175, 80);
+}
+
+/*Div para os Inputs*/
+
 .input {
   margin-bottom: 3%;
   margin: 2%;
   
 }
 
-#limpar {
-  background: rgb(76, 175, 80);
-  color: white;
-  border: 10px solid rgb(76, 175, 80);
-}
-
-#cadastrar {
-  background: rgb(76, 175, 80);
-  color: white;
-  border: 10px solid rgb(76, 175, 80);
-}
+/*Configurações para os inputs*/
 
 input {
   margin-top: -20px;
 }
+
+/*Configuração para o formulário*/
 
 .parte1 {
   margin: 2%;
@@ -127,22 +125,24 @@ input {
   font-weight: lighter;
 }
 
-td {
-  border-bottom: 1px solid gray;
-  text-align: left;
-  width: 10%;
-  
+/*Configurações das tabelas*/
+
+table {
+  margin: 2%;
+  border-spacing: 0px;
 }
 
 th {
   border-bottom: 1px solid gray;
   text-align: left;
 }
-#tr1 {
+
+tr:hover {
   background-color: rgb(245, 245, 245);
 }
 
-table {
-  margin: 2%;
-  border-spacing: 0px;
+td {
+  border-bottom: 1px solid gray;
+  text-align: left;
+  width: 10%;
 }

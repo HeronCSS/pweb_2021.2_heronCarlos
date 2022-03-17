@@ -17,4 +17,19 @@ public class InicioController {
         return new ModelAndView("index");
     }
 
+    @RequestMapping("/noticias")
+    public ModelAndView noticias(){
+        return new ModelAndView("noticias");
+    }
+
+    @RequestMapping("/mandarEmail")
+    public ModelAndView mandarEmail(){
+        return new ModelAndView("contato");
+    }
+
+    @RequestMapping("/sobreSite")
+    public ModelAndView sobreSite(){
+        return new ModelAndView("sobre");
+    }
+
 }

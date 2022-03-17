@@ -4,6 +4,7 @@
 <head>
     <title>PWeb - by Xico Arruda</title>
     <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="shortcut icon" href="/imagens/xico.ico">
 </head>
 
 <body>
@@ -11,47 +12,23 @@
     <div class="div">
         <a th:href="@{/inicio}"><button>Início</button></a>
         <a th:href="@{/adicionarPessoa}"><button>Adicionar pessoa</button></a>
-        <a href="listarPessoas.html"><button class="listar">Listar pessoas</button></a>
-        <a href="noticias.html"><button>Canais de notícia</button></a>
-        <a href="contato.html"><button>Mande um e-Mail</button></a>
-        <a href="sobre.html"><button class="sobre-site">Sobre o site</button></a>
+        <a th:href="@{/adicionarPessoa/listar}"><button class="listar">Listar pessoas</button></a>
+        <a th:href="@{/noticias}"><button>Canais de notícia</button></a>
+        <a th:href="@{/mandarEmail}"><button>Mande um e-Mail</button></a>
+        <a th:href="@{/sobreSite}"><button class="sobre-site">Sobre o site</button></a>
     </div>
     <form th:action="@{/adicionarPessoa}" th:object="${pessoa}" method="get">
         <div class="div2">
             <h1>Lista de pessoas cadastradas:</h1>
         </div>
         <table>
-            <tr class="tr1">
+            <tr>
                 <th>Nome completo</th>
                 <th>Data nascimento</th>
                 <th>e-Mail</th>
                 <th>Sexo</th>
                 <th>Editar</th>
                 <th>Remover</th>
-            </tr>
-            <tr id="tr1">
-                <td>Heron</td>
-                <td>27/01/2003</td>
-                <td>heron11carlos@gmail.com</td>
-                <td>Masculino</td>
-                <td><a href="editarPessoa.html">Editar</a></td>
-                <td><a href="#">Remover</a></td>
-            </tr>
-            <tr>
-                <td>Douglas</td>
-                <td>30/10/2000</td>
-                <td>euSou_O_Douglas@gmail.com</td>
-                <td>Masculino</td>
-                <td><a href="editarPessoa.html">Editar</a></td>
-                <td><a href="#">Remover</a></td>
-            </tr>
-            <tr>
-                <td>Equiton</td>
-                <td>26/03/1990</td>
-                <td>kitinho_e_pika@gmail.com</td>
-                <td>Feminino</td>
-                <td><a href="editarPessoa.html">Editar</a></td>
-                <td><a href="#">Remover</a></td>
             </tr>
             <tr th:each="pessoa : ${pessoa}">
                 <td th:text="${pessoa.nome}">Texto</td>
