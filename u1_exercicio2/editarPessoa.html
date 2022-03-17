@@ -2,7 +2,7 @@
 <html lang="pt_br">
 <head>
     <title>PWeb - by Xico Arruda</title>
-    <link rel="stylesheet" href="@{/style.css}">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
@@ -17,13 +17,13 @@
     <div class="div2">
         <h1>Formulário para edição de pessoas:</h1>
     </div>
-    <form>
+    <form action="listarPessoas.html" target="_self">
         <div class="parte1">
-            <p>Nome Completo *: <input placeholder="Seu nome completo" type="text"></p>
-            <p>Data de Nascimento *: <input type="date"></p>
-            <p>e-Mail *: <input type="text" placeholder="nome@dominio.com"></p>
+            <p>Nome Completo *: <input placeholder="Seu nome completo" type="text" required></p>
+            <p>Data de Nascimento *: <input type="date" required></p>
+            <p>e-Mail *: <input type="email" placeholder="nome@dominio.com" required></p>
             <p>Sexo *:</p>
-            <p>Masculino</p><input type="radio" name="radio">
+            <p>Masculino</p><input type="radio" name="radio" required>
             <p>Feminino</p><input type="radio" name="radio">
             <p>Não informar</p><input type="radio" name="radio">
         </div>
