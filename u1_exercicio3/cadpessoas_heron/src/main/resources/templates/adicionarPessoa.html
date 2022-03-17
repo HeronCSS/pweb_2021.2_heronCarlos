@@ -21,13 +21,13 @@
     </div>
     <form th:action="@{/adicionarPessoa}" th:object="${pessoa}" target="_self" method="post">
         <div class="parte1">
-            <p>Nome Completo *: <input placeholder="Seu nome completo" type="text" th:field="${pessoa.nome}"></p>
-            <p>Data de Nascimento *: <input type="date"th:field="*{dataNascimento}"></p>
-            <p>e-Mail *: <input type="email" placeholder="nome@dominio.com" th:field="*{email}"></p>
+            <p>Nome Completo *: <input placeholder="Seu nome completo" type="text" th:field="${pessoa.nome}" required></p>
+            <p>Data de Nascimento *: <input type="date"th:field="*{dataNascimento}" max="2022-01-01" required></p>
+            <p>e-Mail *: <input type="email" placeholder="nome@dominio.com" th:field="*{email}" required></p>
             <p>Sexo *:</p>
-            <p>Masculino</p><input type="radio" name="radio" th:field="*{sexo}" value="masculino">
-            <p>Feminino</p><input type="radio" name="radio" th:field="*{sexo}" value="feminino">
-            <p>Não informar</p><input type="radio" name="radio" th:field="*{sexo}" value="não informar">
+            <p>Masculino</p><input type="radio" name="radio" th:field="*{sexo}" value="Masculino"  required>
+            <p>Feminino</p><input type="radio" name="radio" th:field="*{sexo}" value="Feminino">
+            <p>Não informar</p><input type="radio" name="radio" th:field="*{sexo}" value="Não informado">
         </div>
 
         <div class="input">

@@ -67,6 +67,15 @@ button:hover {
   margin-left: -5px;
 }
 
+.noticia {
+  background-color: rgb(193, 183, 182);
+  border: 10px solid rgb(193, 183, 182);
+  cursor:pointer;
+  color: white;
+  margin-left: -5px;
+  margin-right: -1px;
+}
+
 /*Mande um Email*/
 
 .contato {

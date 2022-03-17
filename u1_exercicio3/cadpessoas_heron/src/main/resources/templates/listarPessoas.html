@@ -32,7 +32,7 @@
             </tr>
             <tr th:each="pessoa : ${pessoa}">
                 <td th:text="${pessoa.nome}">Texto</td>
-                <td th:text="${pessoa.dataNascimento}">Texto</td>
+                <td th:text="${pessoa.dataNascimento}" pattern="{2}/{2}/{3}">Texto</td>
                 <td th:text="${pessoa.email}">Texto</td>
                 <td th:text="${pessoa.sexo}">Texto</td>
                 <td><a th:href="@{/adicionarPessoa/editar/{id}(id=${pessoa.id_pessoa})}">Editar</a></td>

@@ -20,13 +20,13 @@
     </div>
     <form th:action="@{/adicionarPessoa/editar/{id}(id=${pessoaSalva.id_pessoa})}" th:object="${pessoaSalva}" method="post">
         <div class="parte1">
-            <p>Nome Completo *: <input placeholder="Seu nome completo" type="text"  th:value="${pessoaSalva.nome}"           th:field="*{nome}"></p>
-            <p>Data de Nascimento *: <input type="date"                             th:value="${pessoaSalva.dataNascimento}" th:field="*{dataNascimento}"></p>
-            <p>e-Mail *: <input type="text" placeholder="nome@dominio.com"          th:value="${pessoaSalva.email}"          th:field="*{email}"></p>
+            <p>Nome Completo *: <input placeholder="Seu nome completo" type="text"  th:value="${pessoaSalva.nome}"           th:field="*{nome}" required></p>
+            <p>Data de Nascimento *: <input type="date" max="2021-01-01"            th:value="${pessoaSalva.dataNascimento}" th:field="*{dataNascimento}" required></p>
+            <p>e-Mail *: <input type="text" placeholder="nome@dominio.com"          th:value="${pessoaSalva.email}"          th:field="*{email}" required></p>
             <p>Sexo *:</p>
-            <p>Masculino</p><input type="radio" name="radio"    th:field="*{sexo}" value="masculino">
-            <p>Feminino</p><input type="radio" name="radio"     th:field="*{sexo}" value="feminino">
-            <p>Não informar</p><input type="radio" name="radio" th:field="*{sexo}" value="não informar">
+            <p>Masculino</p><input type="radio" name="radio"    th:field="*{sexo}" value="Masculino" required>
+            <p>Feminino</p><input type="radio" name="radio"     th:field="*{sexo}" value="Feminino">
+            <p>Não informar</p><input type="radio" name="radio" th:field="*{sexo}" value="Não informado">
         </div>
 
         <div class="input">
