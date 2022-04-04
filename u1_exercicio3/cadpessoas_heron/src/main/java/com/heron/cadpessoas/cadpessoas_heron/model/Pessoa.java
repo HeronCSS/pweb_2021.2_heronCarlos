@@ -1,11 +1,15 @@
 package com.heron.cadpessoas.cadpessoas_heron.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table
@@ -24,8 +28,9 @@ public class Pessoa {
     @Column(name = "sexo")
     private String sexo;
 
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     @Column(name = "data_nascimento")
-    private String dataNascimento;
+    private Date dataNascimento;
 
 
     public Long getId_pessoa() {
@@ -80,15 +85,15 @@ public class Pessoa {
         return this;
     }
 
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return this.dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public Pessoa dataNascimento(String dataNascimento) {
+    public Pessoa dataNascimento(Date dataNascimento) {
         setDataNascimento(dataNascimento);
         return this;
     }

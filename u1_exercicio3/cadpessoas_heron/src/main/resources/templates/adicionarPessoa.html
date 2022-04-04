@@ -9,17 +9,17 @@
 
 <body>
     <div class="div">
-        <a th:href="@{/inicio}"><button>Início</button></a>
-        <a th:href="@{/adicionarPessoa}"><button class="adicionar-pessoas">Adicionar pessoa</button></a>
-        <a th:href="@{/adicionarPessoa/listar}"><button>Listar pessoas</button></a>
-        <a th:href="@{/noticias}"><button>Canais de notícia</button></a>
-        <a th:href="@{/mandarEmail}"><button>Mande um e-Mail</button></a>
-        <a th:href="@{/sobreSite}"><button class="sobre-site">Sobre o site</button></a>
+        <a href="/public/index.html"><button>Início</button></a>
+        <a href="/adicionarPessoa"><button class="adicionar-pessoas">Adicionar pessoa</button></a>
+        <a href="/listarPessoas"><button>Listar pessoas</button></a>
+        <a href="/public/noticias.html"><button>Canais de notícia</button></a>
+        <a href="/public/contato.html"><button>Mande um e-Mail</button></a>
+        <a href="/public/sobre.html"><button class="sobre-site">Sobre o site</button></a>
     </div>
     <div class="div2">
         <h1>Formulário para cadastro de pessoas:</h1>
     </div>
-    <form th:action="@{/adicionarPessoa}" th:object="${pessoa}" target="_self" method="post">
+    <form th:action="@{/adicionarPessoa}" action="adicionadaComSucesso.html" th:object="${pessoa}" target="_self" method="post">
         <div class="parte1">
             <p>Nome Completo *: <input placeholder="Seu nome completo" type="text" th:field="${pessoa.nome}" required></p>
             <p>Data de Nascimento *: <input type="date"th:field="*{dataNascimento}" max="2022-01-01" required></p>

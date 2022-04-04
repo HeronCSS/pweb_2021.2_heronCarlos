@@ -16,6 +16,16 @@ body {
 
 /*Botões*/
 
+#remover {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+  margin:0;
+  font-size: medium;
+  border: transparent;
+  background-color: transparent;
+}
+
 button {
   cursor:pointer;
   background: rgb(4, 170, 109);
