@@ -55,7 +55,7 @@ public class AdicionarPessoasController {
         return mav;
     }
 
-    @PostMapping("/adicionarPessoa/editar/{id}")
+    @PutMapping("/adicionarPessoa/editar/{id}")
     public String editarSucesso(@PathVariable("id") long id, Pessoa pessoa){
         Pessoa pessoaAtualizar = pessoaRepo.findById(id).get();
         BeanUtils.copyProperties(pessoa, pessoaAtualizar, "id_pessoa");

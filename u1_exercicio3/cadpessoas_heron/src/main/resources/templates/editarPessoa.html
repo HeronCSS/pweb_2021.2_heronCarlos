@@ -18,7 +18,7 @@
     <div class="div2">
         <h1>Formulário para edição de pessoas:</h1>
     </div>
-    <form th:action="@{/adicionarPessoa/editar/{id}(id=${pessoaSalva.id_pessoa})}" th:object="${pessoaSalva}" method="post">
+    <form th:action="@{/adicionarPessoa/editar/{id}(id=${pessoaSalva.id_pessoa})}" th:object="${pessoaSalva}" th:method="put">
         <div class="parte1">
             <p>Nome Completo *: <input placeholder="Seu nome completo" type="text"  th:value="${pessoaSalva.nome}"           th:field="*{nome}" required></p>
             <p>Data de Nascimento *: <input type="date" max="2021-01-01"            th:value="${pessoaSalva.dataNascimento}" th:field="*{dataNascimento}" required></p>
