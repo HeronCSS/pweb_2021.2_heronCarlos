@@ -1,0 +1,186 @@
+#meuBody{
+    margin: 0%;
+    background-color: rgb(44, 42, 42);
+    color: purple;
+}
+
+.navMain {
+    background-color: purple;
+    height: 55px;
+    margin: 0;
+    
+}
+
+.divMain {
+    height: auto;
+    align-items: center;
+}
+
+li {
+    display: inline;
+    border: 10px solid;
+    border-radius: 11px;
+    border-top-color: red;
+    border-bottom-color: yellow;
+    border-right-color: blue;
+    border-left-color: white;
+    background-color: rgb(142, 16, 221);
+    color: white;
+}
+
+.divMain2 {
+    margin-top: 0%;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.th.telefone {
+    border-right: 2px solid purple;
+}
+
+.th, .td {
+    padding-right: 50px;
+    padding-left: 5px;
+    border-left: 2px solid purple;
+    border-bottom: 2px solid purple;
+}
+
+.table.clientes {
+    color: purple;
+    margin-left: 3%;
+    width: 80%;
+    border-top: 2px solid purple;
+}
+
+.butao {
+    text-align: center;
+}
+
+.btn.btn-secondary {
+    color: purple;
+    background-color: rgb(44, 42, 42);
+}
+
+.form-cadastrar {
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+
+.inp.telefoneDD {
+    width: 43px;
+    margin-right: 5px;
+}
+
+.inp {
+    background-color: rgb(46, 94, 46);
+}
+
+.botoes, .avisos {
+    display: inline;
+}
+
+.avisos {
+    width: fit-content;
+    display: block;
+    margin-top: 2%;
+    margin-right: 2%;
+    border: 1px solid purple;
+    padding: 10px;
+}
+
+.avisos:hover {
+    border: 1px solid white;
+    background-color: rgb(44, 42, 42);
+    color: white;
+}
+
+.endereco {
+    float: right;
+    margin-right: 2%;
+}
+
+.label-cliente {
+    text-align: center;
+}
+
+.label-endereco {
+    text-align: center;
+}
+
+.endereco {
+    border: 2px solid purple;
+    padding: 10px;
+}
+
+#divCadastrar {
+    display: inline;
+    float: left;
+    width: 100%;
+}
+
+#divEndereco {
+    display: inline;
+    margin-top: 2%;
+    margin-right: 2% !important;
+    margin-left: 0% !important;
+    float: right;
+}
+
+#divInsideCadastrar {
+    display: inline;
+    width: 50%;
+    float: left;
+}
+
+.wrapper {
+    display: inline;
+    border: 0;
+}
+
+.juncao {
+    display: inline-block;
+}
+
+li:hover {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+li:active {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.active {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+@media only screen and (max-width: 1202px) {
+    
+    #divCadastrar {
+        width: 100%;
+        display: block;
+    }
+
+    #divEndereco {
+        display: inline-block;
+        text-align: center;
+        float: none;
+    }
+
+    #divInsideCadastrar {
+        margin-top: 2%;
+        display: inline-block;
+        float: none;
+        text-align: center;
+        border: 2px solid purple;
+    }
+
+    .wrapper {
+        text-align: center;
+        width: 100%;
+        border: none;
+        display: block;
+    }
+}

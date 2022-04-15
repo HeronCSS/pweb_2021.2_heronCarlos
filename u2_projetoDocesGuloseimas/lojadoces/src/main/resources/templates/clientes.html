@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docitos & Docitos</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body id="meuBody">
+
+    <div class="divMain">
+        <nav class="navMain">
+            <div class="divMain2">
+                <li>Inicío</li>
+                <li>Clientes</li>
+                <li>Produtos</li>
+                <li>Login</li>
+                <li>Cadastrar-se</li>
+                <li>Sobre</li>
+            </div>
+        </nav>
+    </div>
+
+    <div id="listarClientes">
+        <div style="text-align: center;">
+            <p>
+            <h1>
+                Lista de Clientes
+            </h1>
+            </p>
+        </div>
+        <div>
+            <table class="table clientes">
+                <tr>
+                    <th class="th">Nome</th>
+                    <th class="th">Gênero</th>
+                    <th class="th">Email</th>
+                    <th class="th telefone">Telefone</th>
+                </tr>
+                <tr th:each="pessoa : ${pessoas}">
+                    <td th:text="${pessoa.nome}" class="th"></td>
+                    <td th:text="${pessoa.genero}" class="th"></td>
+                    <td th:text="${pessoa.email}" class="th"></td>
+                    <td th:text="${pessoa.numeroWpp}" class="th telefone"></td>
+                    <!-- <td th:text=""></td> -->
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="butao" id="divCadastrarNovo"><input type="button" class="btn btn-secondary" onclick="paginaCadastrar()" value="Cadastrar Novo Cliente"></div>
+    <form th:action="@{/clientes/cadastrar}" th:method="post" th:object="${pessoa}">
+        <div id="divCadastrar" style="display: none;">
+            <div class="form-cadastrar wrapper cadastrar">
+                <div id="divInsideCadastrar">
+                    <div class="form-cadastrar label-cliente">
+                        <label>
+                            <h1>Cadastre um Cliente</h1>
+                        </label>
+                    </div>
+                    <div class="form-cadastrar nome">
+                        <label>
+                            <h3>Nome:* </h3>
+                        </label>
+                        <input type="text" placeholder="Meu Nome Completo" class="inp nome" th:field="${pessoa.nome}">
+                    </div>
+                    <div class="form-cadastrar cpf">
+                        <label>
+                            <h3>CPF:* </h3>
+                        </label>
+                        <input type="text" placeholder="000.000.000-00" class="inp cpf" th:field="${pessoa.cpf}">
+                    </div>
+                    <div class="form-cadastrar data">
+                        <label>
+                            <h3>Data de Nascimento:* </h3>
+                        </label>
+                        <input type="date" class="inp data" th:field="${pessoa.dataNascimento}">
+                    </div>
+                    <div class="form-cadastrar telefone">
+                        <label>
+                            <h3>Celular (N° do Whatsapp):* </h3>
+                        </label>
+                        <div class="form-cadastrar telefone juncao">
+                        <input type="text" placeholder="DDD" class="inp telefoneDD" id="ddd" maxlength="2">
+                        <input type="text" placeholder="99999-9999" class="inp telefoneNum" id="telefone"
+                            onblur="juntarDDD()">
+                        <input type="text" id="juncao" th:field="${pessoa.numeroWpp}" style="display: none;">
+                    </div>
+                    </div>
+                    <div class="form-cadastrar email">
+                        <label>
+                            <h3>Email:* </h3>
+                        </label>
+                        <input type="text" placeholder="usuario@exemplo.com" class="inp email"
+                            th:field="${pessoa.email}">
+                    </div>
+                    <div class="form-cadastrar genero">
+                        <label>
+                            <h3>Gênero:* </h3>
+                        </label>
+                        <input type="radio" value="Masculino" name="genero" class="inp genero"
+                            th:field="${pessoa.genero}">
+                        <h5 style="display: inline;"> Masculino</h5>
+                        <input type="radio" value="Feminino" name="genero">
+                        <h5 style="display: inline;"> Feminino</h5>
+                        <input type="radio" value="Não Informar" name="genero">
+                        <h5 style="display: inline;"> Não Informar</h5>
+                    </div>
+                    <div class="form-cadastrar botoes">
+                        <input type="button" onclick="cancelar()" id="btnCancelar" class="btn btn-secondary"
+                            value="Cancelar">
+                        <button type="submit" class="btn btn-secondary" value="Cadastrar">Cadastrar</button>
+                    </div>
+                    <div class="form-cadastrar avisos">
+                        <label>
+                            <h5>Aviso: Seu CPF não será publico.</h5>
+                        </label><br>
+                        <label>
+                            <h5>* Informação Obrigatória.</h5>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="wrapper endereco">
+                <div class="endereco" id="divEndereco">
+                    <div class="label-endereco">
+                        <label>
+                            <h2>Endereço</h2>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <h3>Rua:* </h3>
+                        </label>
+                        <input type="text" placeholder="Rua Fulano de Tal" class="inp rua" th:field="${pessoa.rua}">
+                    </div>
+                    <div>
+                        <label>
+                            <h3>Número:* </h3>
+                        </label>
+                        <input type="number" value="1" min="1" required class="inp numero" th:field="${pessoa.numero}">
+                    </div>
+                    <div>
+                        <label>
+                            <h3>Complemento: </h3>
+                        </label>
+                        <input type="text" placeholder="Bloco 1" class="inp complemento"
+                            th:field="${pessoa.complemento}">
+                    </div>
+                    <div>
+                        <label>
+                            <h3>CEP:* </h3>
+                        </label>
+                        <input type="text" placeholder="00000-0000" class="inp cep" th:field="${pessoa.cep}">
+                    </div>
+                    <div>
+                        <label>
+                            <h3>Cidade:* </h3>
+                        </label>
+                        <input type="text" placeholder="Angicos" class="inp cidade" th:field="${pessoa.cidade}">
+                    </div>
+                    <div>
+                        <label>
+                            <h3>UF:* </h3>
+                        </label>
+                        <input type="text" placeholder="RN" class="inp uf" th:field="${pessoa.uf}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+        function paginaCadastrar() {
+            if (document.getElementById('divCadastrar').style.display == 'none') {
+                document.getElementById('listarClientes').style.display = 'none';
+                document.getElementById('divCadastrarNovo').style.display = 'none';
+                document.getElementById('divCadastrar').style.display = 'block';
+            }
+
+        }
+
+        function cancelar() {
+            if (document.getElementById('divCadastrar').style.display == 'block') {
+                document.getElementById('divCadastrar').style.display = 'none';
+                document.getElementById('listarClientes').style.display = 'block'
+                document.getElementById('divCadastrarNovo').style.display = 'block';
+            }
+        }
+        function juntarDDD() {
+            var numero = document.getElementById('telefone');
+            var num = document.getElementById('ddd');
+            var tot = '(' + num.value + ') ' + numero.value;
+            if (tot.length == 12) {
+                var tot2 = tot.slice(0, 8) + "-" + tot.slice(8);
+                document.getElementById('juncao').value = tot2;
+                console.log(document.getElementById('juncao').value)
+            } if (tot.length == 14 && !tot.includes('-')) {
+                var tot2 = tot.slice(0, 10) + "-" + tot.slice(10);
+                document.getElementById('juncao').value = tot2;
+                console.log(document.getElementById('juncao').value)
+            }
+
+
+        }
+
+        function equantoDigita() {
+            if (document.getElementById('telefone').value.length == 5 && document.getElementById('telefone').onkeypress != '') {
+                document.getElementById('telefone').onkeypress = '';
+                document.getElementById('telefone').value += '-';
+            } else if (document.getElementById('telefone').onkeypress == '' && document.getElementById('telefone').value.length < 4) {
+                document.getElementById('telefone').value += '-';
+            }
+
+        }
+
+</script>
+
+</body>
+
+</html>
