@@ -13,7 +13,7 @@
 
 <body id="meuBody">
 
-    <div class="divMain">
+    <!-- <div class="divMain">
         <nav class="navMain">
             <div class="divMain2">
                 <li>Inicío</li>
@@ -22,6 +22,33 @@
                 <li>Login</li>
                 <li>Cadastrar-se</li>
                 <li>Sobre</li>
+            </div>
+        </nav>
+    </div> -->
+
+    <div class="divMain">
+        <nav class="navMain">
+            <div class="divMain2">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                      <a href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Cadastrar-se</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Sobre</a>
+                    </li>
+                  </ul>
             </div>
         </nav>
     </div>
@@ -52,7 +79,8 @@
             </table>
         </div>
     </div>
-    <div class="butao" id="divCadastrarNovo"><input type="button" class="btn btn-secondary" onclick="paginaCadastrar()" value="Cadastrar Novo Cliente"></div>
+    <div class="butao" id="divCadastrarNovo"><input type="button" class="btn btn-secondary" onclick="paginaCadastrar()"
+            value="Cadastrar Novo Cliente"></div>
     <form th:action="@{/clientes/cadastrar}" th:method="post" th:object="${pessoa}">
         <div id="divCadastrar" style="display: none;">
             <div class="form-cadastrar wrapper cadastrar">
@@ -85,11 +113,11 @@
                             <h3>Celular (N° do Whatsapp):* </h3>
                         </label>
                         <div class="form-cadastrar telefone juncao">
-                        <input type="text" placeholder="DDD" class="inp telefoneDD" id="ddd" maxlength="2">
-                        <input type="text" placeholder="99999-9999" class="inp telefoneNum" id="telefone"
-                            onblur="juntarDDD()">
-                        <input type="text" id="juncao" th:field="${pessoa.numeroWpp}" style="display: none;">
-                    </div>
+                            <input type="text" placeholder="DDD" class="inp telefoneDD" id="ddd" maxlength="2">
+                            <input type="text" placeholder="99999-9999" class="inp telefoneNum" id="telefone"
+                                onblur="juntarDDD()">
+                            <input type="text" id="juncao" th:field="${pessoa.numeroWpp}" style="display: none;">
+                        </div>
                     </div>
                     <div class="form-cadastrar email">
                         <label>
@@ -204,21 +232,8 @@
                 document.getElementById('juncao').value = tot2;
                 console.log(document.getElementById('juncao').value)
             }
-
-
         }
-
-        function equantoDigita() {
-            if (document.getElementById('telefone').value.length == 5 && document.getElementById('telefone').onkeypress != '') {
-                document.getElementById('telefone').onkeypress = '';
-                document.getElementById('telefone').value += '-';
-            } else if (document.getElementById('telefone').onkeypress == '' && document.getElementById('telefone').value.length < 4) {
-                document.getElementById('telefone').value += '-';
-            }
-
-        }
-
-</script>
+    </script>
 
 </body>
 

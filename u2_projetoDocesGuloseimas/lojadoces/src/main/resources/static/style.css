@@ -6,9 +6,22 @@
 
 .navMain {
     background-color: purple;
-    height: 55px;
+    height: 70px;
     margin: 0;
     
+}
+
+.nav-item a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav-item a:link {
+    color: inherit;
+}
+
+.nav-link {
+    height: 20px;
 }
 
 .divMain {
@@ -17,7 +30,7 @@
 }
 
 li {
-    display: inline;
+    display: inline-block;
     border: 10px solid;
     border-radius: 11px;
     border-top-color: red;
@@ -45,7 +58,7 @@ li {
     border-bottom: 2px solid purple;
 }
 
-.table.clientes {
+.table.clientes, .table.produtos {
     color: purple;
     margin-left: 3%;
     width: 80%;
@@ -64,6 +77,15 @@ li {
 .form-cadastrar {
     margin-bottom: 2%;
     margin-left: 2%;
+}
+
+.cadastrarProd {
+    margin-bottom: 1%;
+    margin-left: 2%;
+}
+
+.cadastrarProd {
+    width: fit-content;
 }
 
 .inp.telefoneDD {
@@ -88,6 +110,11 @@ li {
     padding: 10px;
 }
 
+.aviso-prod {
+    float: right;
+    display: inline;
+}
+
 .avisos:hover {
     border: 1px solid white;
     background-color: rgb(44, 42, 42);
@@ -99,7 +126,7 @@ li {
     margin-right: 2%;
 }
 
-.label-cliente {
+.label-cliente, .cadastrarLabel {
     text-align: center;
 }
 
@@ -146,14 +173,13 @@ li:hover {
     margin-right: 5%;
 }
 
-li:active {
+.active {
     margin-left: 5%;
     margin-right: 5%;
 }
 
-.active {
-    margin-left: 5%;
-    margin-right: 5%;
+.nav-link:link {
+    color:inherit;
 }
 
 @media only screen and (max-width: 1202px) {

@@ -12,32 +12,62 @@
 </head>
 
 <body id="meuBody">
+    <!-- <div class="divMain">
+        <nav class="navMain">
+            <div class="divMain2">
+                <li><a th:href="@{/inicio}" id="btn inicio">Inicío</a></li>
+                <li>Clientes</li>
+                <li>Produtos</li>
+                <li>Login</li>
+                <li>Cadastrar-se</li>
+                <li>Sobre</li>
+            </div>
+        </nav>
+    </div> -->
+
     <div class="divMain">
         <nav class="navMain">
             <div class="divMain2">
-                <li class="but">Inicío</li>
-                <li class="but">Clientes</li>
-                <li class="active" id="btuativo">Produtos</li>
-                <li class="but">Login</li>
-                <li class="but">Cadastrar-se</li>
-                <li class="but">Sobre</li>
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Clientes</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="#">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Cadastrar-se</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Sobre</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </div>
 
-    <div>
-        <table>
+    <div id="listarProdutos">
+        <div style="text-align: center;">
+            <h1>Listar Produtos</h1>
+        </div>
+        <table class="table produtos">
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Marca</th>
-                    <th>Altura</th>
-                    <th>Largura</th>
-                    <th>Profundidade</th>
-                    <th>Volume</th>
-                    <th>Peso</th>
-                    <th>Preço</th>
-                    <th>Data Cadastrado</th>
+                    <th class="th">Nome</th>
+                    <th class="th">Marca</th>
+                    <th class="th">Altura</th>
+                    <th class="th">Largura</th>
+                    <th class="th">Profundidade</th>
+                    <th class="th">Volume</th>
+                    <th class="th">Peso</th>
+                    <th class="th">Preço</th>
+                    <th class="th telefone">Data Cadastrado</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,45 +85,70 @@
             </tbody>
         </table>
     </div>
+    <div class="butao" id="divCadastrarNovo"><input type="button" class="btn btn-secondary" onclick="paginaCadastrar()"
+            value="Cadastrar Novo Produto"></div>
     <form th:action="@{/produtos/cadastrar}" th:method="post" th:object="${produto}">
-        <div class="divCadastrarProd" id="divCadastrarProd">
+        <div class="divCadastrarProd" id="divCadastrarProd" style="display: none;">
+
             <div class="produto cadastrarLabel">
-                <label>Cadastrar Produtos</label>
+                <h2>Cadastrar Produtos</h2>
             </div>
             <div class="cadastrarProd nome">
-                <h3>Nome do Produto:* </h3>
-                <input type="text" placeholder="Bolo de Chocolate Corb/ Chocolate" th:field="*{nomeProduto}">
+                <label>
+                    <h3>Nome do Produto:* </h3>
+                </label>
+                <input type="text" placeholder="Bolo de Chocolate Corb/ Chocolate" th:field="*{nomeProduto}"  style="width: 300px;">
             </div>
             <div class="cadastrarProd marca">
-                <h3>Marca:* </h3>
+                <label>
+                    <h3>Marca:* </h3>
+                </label>
                 <input type="text" placeholder="Panificadora Dois Irmãos" th:field="*{marca}">
             </div>
             <div class="cadastrarProd altura">
-                <h3>Altura (Centimetros): </h3>
-                <input type="text" placeholder="2.20" th:field="*{altura}">
+                <label>
+                    <h3>Altura (Centimetros): </h3>
+                </label>
+                <input type="text" th:field="*{altura}" th:value="2.20">
             </div>
             <div class="cadastrarProd lagura">
-                <h3>Largura (Centimetros): </h3>
+                <label>
+                    <h3>Largura (Centimetros): </h3>
+                </label>
                 <input type="text" placeholder="2.20" th:field="*{largura}">
             </div>
-            <div class="cadastrarProd profundidade">
-                <h3>Profundidade (Centimetros): </h3>
-                <input type="text" placeholder="2.20" th:field="*{profundidade}">
+            <div style="display:inline-block; width: 900px;">
+                <div class="cadastrarProd profundidade">
+                    <label>
+                        <h3>Profundidade (Centimetros): </h3>
+                    </label>
+                    <input type="text" placeholder="2.20" th:field="*{profundidade}">
+                </div>
+                <div class="cadastrarProd peso">
+                    <label>
+                        <h3>Peso (Quilos): </h3>
+                    </label>
+                    <input type="text" placeholder="90.0" th:field="*{peso}">
+                </div>
+                <div class="cadastrarProd precoVenda">
+                    <label>
+                        <h3>Preço de Venda:* </h3>
+                    </label>
+                    <input type="text" placeholder="54.99" th:field="*{precoVenda}">
+                </div>
+                <div class="cadastrarProd precoCompra">
+                    <label>
+                        <h3>Preço de Compra:* </h3>
+                    </label>
+                    <input type="text" placeholder="54.99" th:field="*{precoCompra}">
+                </div>
+                <div class="form-cadastrar botoes">
+                    <input type="button" onclick="cancelar()" id="btnCancelar" class="btn btn-secondary"
+                        value="Cancelar">
+                    <button type="submit" class="btn btn-secondary" value="Cadastrar">Cadastrar</button>
+                </div>
             </div>
-            <div class="cadastrarProd peso">
-                <h3>Peso (Quilos): </h3>
-                <input type="text" placeholder="90.0" th:field="*{peso}">
-            </div>
-            <div class="cadastrarProd precoVenda">
-                <h3>Preço de Venda:* </h3>
-                <input type="text" placeholder="54.99" th:field="*{precoVenda}">
-            </div>
-            <div class="cadastrarProd precoCompra">
-                <h3>Preço de Compra:* </h3>
-                <input type="text" placeholder="54.99" th:field="*{precoCompra}">
-            </div>
-
-            <div class="form-cadastrar avisos">
+            <div class="form-cadastrar avisos aviso-prod">
                 <label>
                     <h5>Aviso: Seu CPF não será publico.</h5>
                 </label><br>
@@ -103,6 +158,89 @@
             </div>
         </div>
     </form>
+
+    <script>
+        function paginaCadastrar() {
+            if (document.getElementById('divCadastrarProd').style.display == 'none') {
+                document.getElementById('listarProdutos').style.display = 'none';
+                document.getElementById('divCadastrarNovo').style.display = 'none';
+                document.getElementById('divCadastrarProd').style.display = 'block';
+            }
+        }
+
+        function cancelar() {
+            if (document.getElementById('divCadastrarProd').style.display == 'block') {
+                document.getElementById('divCadastrarProd').style.display = 'none';
+                document.getElementById('listarProdutos').style.display = 'block'
+                document.getElementById('divCadastrarNovo').style.display = 'block';
+            }
+        }
+
+        var btn = document.getElementsByClassName('nav-item');
+
+        btn[0].addEventListener('mouseover', function () {
+            btn[0].style.marginLeft = '0%'
+            btn[0].style.marginRight = '10%'
+            document.getElementsByClassName('active')[0].style.marginRight = '0%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '0%';
+        });
+        btn[0].addEventListener('mouseout', function () {
+            btn[0].style.margin = '0%';
+            document.getElementsByClassName('active')[0].style.marginRight = '5%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '5%';
+        });
+
+        btn[1].addEventListener('mouseover', function () {
+            btn[1].style.marginLeft = '5%'
+            btn[1].style.marginRight = '10%'
+            document.getElementsByClassName('active')[0].style.marginRight = '0%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '5%';
+        });
+        btn[1].addEventListener('mouseout', function () {
+            btn[1].style.margin = '0%';
+            document.getElementsByClassName('active')[0].style.marginRight = '5%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '5%';
+        });
+
+        //
+        btn[3].addEventListener('mouseover', function () {
+            btn[3].style.marginLeft = '10%'
+            btn[3].style.marginRight = '5%'
+            document.getElementsByClassName('active')[0].style.marginRight = '5%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '0%';
+        });
+        btn[3].addEventListener('mouseout', function () {
+            btn[3].style.margin = '0%';
+            document.getElementsByClassName('active')[0].style.marginRight = '5%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '5%';
+        });
+
+        //
+        btn[4].addEventListener('mouseover', function () {
+            btn[4].style.marginLeft = '15%'
+            btn[4].style.marginRight = '5%'
+            document.getElementsByClassName('active')[0].style.marginRight = '0%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '0%';
+        });
+        btn[4].addEventListener('mouseout', function () {
+            btn[4].style.margin = '0%';
+            document.getElementsByClassName('active')[0].style.marginRight = '5%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '5%';
+        });
+
+        //
+        btn[5].addEventListener('mouseover', function () {
+            btn[5].style.marginLeft = '15%'
+            btn[5].style.marginRight = '5%'
+            document.getElementsByClassName('active')[0].style.marginRight = '0%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '0%';
+        });
+        btn[5].addEventListener('mouseout', function () {
+            btn[5].style.margin = '0%';
+            document.getElementsByClassName('active')[0].style.marginRight = '5%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '5%';
+        });
+    </script>
 </body>
 
 </html>
