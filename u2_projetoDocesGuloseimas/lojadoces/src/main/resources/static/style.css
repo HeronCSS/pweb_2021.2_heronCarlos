@@ -5,7 +5,7 @@
 }
 
 .navMain {
-    background-color: purple;
+    background: linear-gradient(rgb(255, 0, 255), purple, rgb(42,42,42));
     height: 70px;
     margin: 0;
     
@@ -31,13 +31,9 @@
 
 li {
     display: inline-block;
-    border: 10px solid;
+    border: 10px solid rgb(44, 42, 44);
     border-radius: 11px;
-    border-top-color: red;
-    border-bottom-color: yellow;
-    border-right-color: blue;
-    border-left-color: white;
-    background-color: rgb(142, 16, 221);
+    background-color: rgb(44, 42, 42);
     color: white;
 }
 
@@ -47,8 +43,12 @@ li {
     padding-top: 15px;
 }
 
-.th.telefone {
+.th.lastColumn {
     border-right: 2px solid purple;
+}
+
+.nothing {
+    border-top: 0 !important;
 }
 
 .th, .td {
@@ -56,13 +56,24 @@ li {
     padding-left: 5px;
     border-left: 2px solid purple;
     border-bottom: 2px solid purple;
+    border-top: 2px solid purple;
 }
+
+#remover {
+    color: purple;
+    cursor: pointer;
+    text-decoration: underline;
+    margin:0;
+    font-size: medium;
+    border: transparent;
+    background-color: transparent;
+  }
 
 .table.clientes, .table.produtos {
     color: purple;
     margin-left: 3%;
     width: 80%;
-    border-top: 2px solid purple;
+    /* border-top: 2px solid purple; */
 }
 
 .butao {
@@ -181,6 +192,24 @@ li:hover {
 .nav-link:link {
     color:inherit;
 }
+
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid purple;
+    height:500px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-item {
+    border: 3px solid purple;
+    margin: 2%;
+}
+
 
 @media only screen and (max-width: 1202px) {
     

@@ -1,12 +1,12 @@
 package com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.Model;
 
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 import lombok.Data;
 
@@ -37,8 +37,10 @@ public class Produto {
 
     private double precoVenda;
 
-    private Date dataCadastro;
+    private String dataCadastro;
     
     private int vezesVendido;
+
+    private String linkImg;
 
 }

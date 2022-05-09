@@ -31,22 +31,22 @@
             <div class="divMain2">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                      <a href="#">Inicio</a>
+                      <a href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item active">
+                      <a href="/clientes">Clientes</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#">Clientes</a>
+                      <a href="/produtos">Produtos</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#">Produtos</a>
+                      <a href="/login">Login</a>
                     </li>
                     <li class="nav-item">
-                      <a href="#">Login</a>
+                        <a href="/cadastrar">Cadastrar-se</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Cadastrar-se</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Sobre</a>
+                        <a href="/sobre">Sobre</a>
                     </li>
                   </ul>
             </div>
@@ -65,16 +65,22 @@
             <table class="table clientes">
                 <tr>
                     <th class="th">Nome</th>
+                    <th class="th">Data Nascimento</th>
                     <th class="th">Gênero</th>
                     <th class="th">Email</th>
-                    <th class="th telefone">Telefone</th>
+                    <th class="th lastColumn">Telefone</th>
                 </tr>
                 <tr th:each="pessoa : ${pessoas}">
-                    <td th:text="${pessoa.nome}" class="th"></td>
-                    <td th:text="${pessoa.genero}" class="th"></td>
-                    <td th:text="${pessoa.email}" class="th"></td>
-                    <td th:text="${pessoa.numeroWpp}" class="th telefone"></td>
-                    <!-- <td th:text=""></td> -->
+                    <td class="th" th:text="${pessoa.nome}"></td>
+                    <td class="th" th:text="${#dates.format(pessoa.dataNascimento, 'dd/MM/yyyy')}"></td>
+                    <td class="th" th:text="${pessoa.genero}"></td>
+                    <td class="th" th:text="${pessoa.email}"></td>
+                    <td class="th lastColumn" th:text="${pessoa.numeroWpp}"></td>
+                    <td class="th lastColumn">
+                        <form th:action="@{/clientes/delete/{id}(id=${pessoa.idPessoa})}" th:method="delete">
+                            <a href=""><button type="submit" id="remover">X</button></a>
+                        </form>
+                    </td>
                 </tr>
             </table>
         </div>

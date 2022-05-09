@@ -31,7 +31,6 @@ public class Pessoa {
     private String cpf;
 
     @DateTimeFormat(pattern = "yyyy-mm-dd")
-    @Column(name = "data_nascimento")
     private Date dataNascimento;
 
     private String email;
@@ -44,16 +43,16 @@ public class Pessoa {
     private List<Dependentes> dependentes;
 
     /* Endereço */
-    @Column(nullable = true)
     private String rua;
-    @Column(nullable = true)
+
     private Long numero;
-    @Column(nullable = true)
+
     private String complemento;
-    @Column(nullable = true)
+
     private String cep;
-    @Column(nullable = true)
+
     private String cidade;
-    @Column(nullable = true)
+
     private String uf;
+
 }

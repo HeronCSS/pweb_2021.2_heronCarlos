@@ -1,5 +1,11 @@
 package com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.Controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
 import com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.Model.Pedido;
 import com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.Model.Pessoa;
 import com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.Model.Produto;
@@ -36,6 +42,22 @@ public class ClienteController {
     @Autowired
     DependentesRepository dependeRepo;
 
+    @GetMapping("/")
+    public ModelAndView index(){
+        ModelAndView mav = new ModelAndView("index");
+        List<Produto> prodList = new ArrayList<>();
+        prodList = produtoRepo.findAll();
+        List<String> prodLinks = new ArrayList<>();
+        for (int i = 0; i < prodList.size(); i++) {
+            prodLinks.add(prodList.get(i).getLinkImg());
+        }
+
+        //TODO: Fazer a foto da careca de Xico
+        //TODO: Fazer um metodo em ProdutoService que pega os 5 produtos mais vendidos com Dois FOR aninhado e comparando o valor.
+        mav.addObject("prod", prodLinks);
+        return mav;
+    }
+
     @GetMapping("/clientes")
     public ModelAndView getClientes(){
         ModelAndView mav = new ModelAndView("clientes");
@@ -59,7 +81,7 @@ public class ClienteController {
         return "redirect:/clientes";
     }
 
-    @DeleteMapping("/clientes/remover/{id}")
+    @DeleteMapping("/clientes/delete/{id}")
     public String deleteCliente(@PathVariable Long id){
         pessoaRepo.deleteById(id);
         return "redirect:/clientes";
@@ -77,9 +99,10 @@ public class ClienteController {
     }
     
     @PostMapping("/produtos/cadastrar")
-    public String postProdutos(Produto produto){
+    public String postProdutos(Produto produto) throws Exception{
+        produto.setDataCadastro(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
         produtoRepo.save(produto);
-        return "redirect:/produto";
+        return "redirect:/produtos";
     }
 
     @PutMapping("/produtos/atualizar/{id}")
@@ -90,8 +113,8 @@ public class ClienteController {
         return "redirect:/produtos";
     }
 
-    @DeleteMapping("/produtos/remover/{id}")
-    public String deleteProduto(@PathVariable Long id){
+    @DeleteMapping("/produtos/delete/{id}")
+    public String deleteProduto(@PathVariable("id") Long id){
         produtoRepo.deleteById(id);
         return "redirect:/produtos";
     }

@@ -2,9 +2,6 @@ package com.heron.cadpessoas.cadpessoas_heron.config;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.swing.text.DateFormatter;
 
 import com.heron.cadpessoas.cadpessoas_heron.model.Pessoa;
 import com.heron.cadpessoas.cadpessoas_heron.repository.PessoaRepository;
@@ -22,6 +19,7 @@ public class ComandosStartup implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         gerarPessoas();
+        System.out.println("Running...");
     }
 
     public void gerarPessoas() throws ParseException {
