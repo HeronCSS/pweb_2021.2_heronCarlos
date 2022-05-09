@@ -10,6 +10,17 @@
             "projectName": "cadpessoas_heron",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-LojadocesApplication<lojadoces>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.LojadocesApplication",
+            "projectName": "lojadoces",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
