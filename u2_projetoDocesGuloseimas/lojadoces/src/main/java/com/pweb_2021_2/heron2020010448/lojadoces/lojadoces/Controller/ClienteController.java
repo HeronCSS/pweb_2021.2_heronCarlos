@@ -52,7 +52,6 @@ public class ClienteController {
             prodLinks.add(prodList.get(i).getLinkImg());
         }
 
-        //TODO: Fazer a foto da careca de Xico
         //TODO: Fazer um metodo em ProdutoService que pega os 5 produtos mais vendidos com Dois FOR aninhado e comparando o valor.
         mav.addObject("prod", prodLinks);
         return mav;
@@ -76,7 +75,7 @@ public class ClienteController {
     @PutMapping("/clientes/atualizar/{id}")
     public String putCliente(@PathVariable Long id, Pessoa cliente) throws Exception{
         Pessoa newCliente = pessoaRepo.findById(id).orElseThrow(()-> new Exception("Não encontrado!"));
-        BeanUtils.copyProperties(cliente, newCliente, "id");
+        BeanUtils.copyProperties(cliente, newCliente, "idPessoa");
         pessoaRepo.save(newCliente);
         return "redirect:/clientes";
     }
@@ -121,11 +120,11 @@ public class ClienteController {
 
     /* Pedidos */
 
-    @GetMapping("/meusPedidos")
-    public ModelAndView getPedidos(){
+    @GetMapping("/clientes/info/{id}")
+    public ModelAndView getPedidos(@PathVariable("id") Long id) throws Exception{
         ModelAndView mav = new ModelAndView("pedidos");
-        Pedido pedido = new Pedido();
-        mav.addObject("pedido", pedido);
+        Pessoa cliente = pessoaRepo.findById(id).orElseThrow(()->new Exception());
+        mav.addObject("cliente", cliente);
         return mav;
     }
 

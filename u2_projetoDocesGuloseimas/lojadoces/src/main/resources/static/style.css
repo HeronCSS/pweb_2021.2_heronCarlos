@@ -4,6 +4,18 @@
     color: purple;
 }
 
+input:disabled {
+    color: purple;
+    font-weight: 600;
+    background-color: rgb(47, 131, 47);
+}
+
+input {
+    color: purple;
+    font-weight: 600;
+    background-color: rgb(47, 131, 47);
+}
+
 .navMain {
     background: linear-gradient(rgb(255, 0, 255), purple, rgb(42,42,42));
     height: 70px;
@@ -43,8 +55,23 @@ li {
     padding-top: 15px;
 }
 
+.h3-div {
+    text-align: center;
+}
+
 .th.lastColumn {
     border-right: 2px solid purple;
+    padding: auto 0;
+}
+
+.th.td-icon {
+    padding: auto;
+    width: 10px;
+    margin: 0 auto;
+}
+
+.th.lastColumn form {
+    margin: 0 auto;
 }
 
 .nothing {
@@ -52,8 +79,6 @@ li {
 }
 
 .th, .td {
-    padding-right: 50px;
-    padding-left: 5px;
     border-left: 2px solid purple;
     border-bottom: 2px solid purple;
     border-top: 2px solid purple;
@@ -67,13 +92,30 @@ li {
     font-size: medium;
     border: transparent;
     background-color: transparent;
-  }
+}
 
-.table.clientes, .table.produtos {
+.table-div {
+    display: grid;
+    justify-content: center;
+}
+
+.table.clientes, .table.produtos, .table.pedido {
     color: purple;
-    margin-left: 3%;
-    width: 80%;
-    /* border-top: 2px solid purple; */
+    width: 1000px;
+}
+
+.table.pedido{
+    width: fit-content;
+    margin-top: 8px;
+}
+
+.cliente-info {
+    margin-left: 20px;
+    margin-top: 20px;
+    border: 5px solid purple;
+    padding: 10px;
+    width: max-content;
+    display: inline-block;
 }
 
 .butao {
@@ -83,6 +125,17 @@ li {
 .btn.btn-secondary {
     color: purple;
     background-color: rgb(44, 42, 42);
+}
+
+.btn.btn-secondary:focus {
+    color: purple;
+    background-color: rgb(44, 42, 42);
+}
+
+.btn.btn-secondary:active:focus {
+    color: purple;
+    background-color: rgb(44, 42, 42);
+    box-shadow: inset 0 0 2px purple;
 }
 
 .form-cadastrar {

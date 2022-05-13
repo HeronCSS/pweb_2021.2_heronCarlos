@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docitos&Docitos</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body id="meuBody">
+    <div class="divMain">
+        <nav class="navMain">
+            <div class="divMain2">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="/clientes">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/produtos">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/cadastrar">Cadastrar-se</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/sobre">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <form th:action="@{/clientes/atualizar/{id}(id=${cliente.idPessoa})}" th:object="${cliente}" th:method="PUT">
+        <!-- TODO: fazer o PUT do cliente, e as listas -->
+        <div class="cliente-info">
+            <div>
+                <label for="h3-nome">
+                    <h3>Nome: *</h3>
+                </label>
+                <input type="text" th:field="${cliente.nome}" id="cliente-nome" disabled>
+            </div>
+            <div>
+                <label for="h3-nome">
+                    <h3>Data Nascimento: *</h3>
+                </label>
+                <input type="date" id="cliente-dataNascimento" th:field="${cliente.dataNascimento}" disabled>
+            </div>
+            <div>
+                <label for="h3-nome">
+                    <h3>CPF: *</h3>
+                </label>
+                <input type="text" th:field="${cliente.cpf}" id="cliente-cpf" disabled>
+            </div>
+            <div>
+                <label for="h3-nome">
+                    <h3>Email: *</h3>
+                </label>
+                <input type="email" th:field="${cliente.email}" id="cliente-email" disabled>
+            </div>
+            <div>
+                <label for="h3-nome">
+                    <h3>Genero: *</h3>
+                </label>
+                <input type="text" th:field="${cliente.genero}" id="cliente-genero" disabled>
+            </div>
+            <div>
+                <label for="h3-nome">
+                    <h3>Celular: *</h3>
+                </label>
+                <input type="text" th:field="${cliente.numeroWpp}" id="cliente-celular" disabled>
+            </div>
+            <button type="button" onclick="editarCliente()" id="botao-cliente" class="btn btn-secondary">Editar</button>
+            <button type="submit" class="btn btn-secondary" id="botao-cliente-salvar" hidden>Salvar</button>
+        </div>
+
+        <div class="cliente-info">
+            <div>
+                <label>
+                    <h3>Rua: *</h3>
+                </label>
+                <input type="text" placeholder="" th:field="${cliente.rua}" disabled id="endereco-rua">
+            </div>
+
+            <div>
+                <label>
+                    <h3>Numero: *</h3>
+                </label>
+                <input type="number" placeholder="" th:field="${cliente.numero}" disabled id="endereco-numero">
+            </div>
+
+            <div>
+                <label>
+                    <h3>Complemento: *</h3>
+                </label>
+                <input type="text" placeholder="" th:field="${cliente.complemento}" disabled id="endereco-complemento">
+            </div>
+
+            <div>
+                <label>
+                    <h3>CEP: *</h3>
+                </label>
+                <input type="text" placeholder="" th:field="${cliente.cep}" disabled id="endereco-cep">
+            </div>
+
+            <div>
+                <label>
+                    <h3>Cidade: *</h3>
+                </label>
+                <input type="text" placeholder="" th:field="${cliente.cidade}" disabled id="endereco-cidade">
+            </div>
+
+            <div>
+                <label>
+                    <h3>Estado: *</h3>
+                </label>
+                <input type="text" placeholder="" th:field="${cliente.uf}" disabled id="endereco-uf">
+            </div>
+            <button type="button" class="btn btn-secondary" onclick="editarEndereco()" id="btn-endereco">Editar</button>
+            <button type="submit" class="btn btn-secondary" id="botao-endereco-salvar">Salvar</button>
+        </div>
+    </form>
+
+    <div class="table-div">
+        <div class="h3-div">
+            <p>
+                <h3>Lista de Pedidos deste Cliente</h3>
+            </p>
+        </div>
+        <table class="table pedido">
+            <thead>
+                <tr>
+                    <th class="th">Nome do Cliente</th>
+                    <th class="th">Nome do Produto</th>
+                    <th class="th">Quantidade Comprada</th>
+                    <th class="th">Valor Pago</th>
+                    <th class="th">Valor Unitario</th>
+                    <th class="th">Valor Comprado</th>
+                    <th class="th lastColumn">Forma de Pagamento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--<tr th:each="produto : ${produto}" th:each="pedido : ${pedido}">
+                    <td th:text="${cliente.nome}"></td>
+                    <td th:text="${produto.nomeProduto}"></td>
+                    <td th:text="${pedido.qtdDesejada}"></td>
+                    <td th:text="${pedido.valorTotalPago}"></td>
+                    <td th:text="${pedido.valorTotalProduto}"></td>
+                    <td th:text="${produto.precoVenda}"></td>
+                    <td th:text="${pedido.formaPagamento}"></td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+    <script>
+        var btn = document.getElementsByClassName('nav-item');
+
+        btn[0].addEventListener('mouseover', function () {
+            btn[0].style.marginLeft = '0%'
+            btn[0].style.marginRight = '10%'
+            document.getElementsByClassName('active')[0].style.marginRight = '0%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '0%';
+        });
+        btn[0].addEventListener('mouseout', function () {
+            btn[0].style.margin = '0%';
+            document.getElementsByClassName('active')[0].style.marginRight = '5%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '5%';
+        });
+
+        btn[2].addEventListener('mouseover', function () {
+            btn[2].style.marginLeft = '15%'
+            btn[2].style.marginRight = '5%'
+            document.getElementsByClassName('active')[0].style.marginRight = '0%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '0%';
+        });
+        btn[2].addEventListener('mouseout', function () {
+            btn[2].style.margin = '0%';
+            document.getElementsByClassName('active')[0].style.marginRight = '5%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '5%';
+        });
+
+        //
+        btn[3].addEventListener('mouseover', function () {
+            btn[3].style.marginLeft = '15%'
+            btn[3].style.marginRight = '5%'
+            document.getElementsByClassName('active')[0].style.marginRight = '0%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '0%';
+        });
+        btn[3].addEventListener('mouseout', function () {
+            btn[3].style.margin = '0%';
+            document.getElementsByClassName('active')[0].style.marginRight = '5%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '5%';
+        });
+
+        //
+        btn[4].addEventListener('mouseover', function () {
+            btn[4].style.marginLeft = '15%'
+            btn[4].style.marginRight = '5%'
+            document.getElementsByClassName('active')[0].style.marginRight = '0%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '0%';
+        });
+        btn[4].addEventListener('mouseout', function () {
+            btn[4].style.margin = '0%';
+            document.getElementsByClassName('active')[0].style.marginRight = '5%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '5%';
+        });
+
+        //
+        btn[5].addEventListener('mouseover', function () {
+            btn[5].style.marginLeft = '15%'
+            btn[5].style.marginRight = '5%'
+            document.getElementsByClassName('active')[0].style.marginRight = '0%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '0%';
+        });
+        btn[5].addEventListener('mouseout', function () {
+            btn[5].style.margin = '0%';
+            document.getElementsByClassName('active')[0].style.marginRight = '5%';
+            document.getElementsByClassName('active')[0].style.marginLeft = '5%';
+        });
+    </script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const dateNascimento = /*[[${cliente.dataNascimento}]]*/ 'default';
+        var d = new Date(dateNascimento);
+        var today = new Date(dateNascimento).toISOString().slice(0, 10);
+        document.getElementById('cliente-dataNascimento').value = today;    
+        
+        
+
+        /*]]>*/
+    </script>
+    <script>
+        function editarCliente() {
+            if (document.getElementById('cliente-nome').disabled == true) {
+                document.getElementById('cliente-nome').disabled = false;
+                document.getElementById('cliente-dataNascimento').disabled = false;
+                document.getElementById('cliente-cpf').disabled = false;
+                document.getElementById('cliente-celular').disabled = false;
+                document.getElementById('cliente-email').disabled = false;
+                document.getElementById('cliente-genero').disabled = false;
+                document.getElementById('botao-cliente').innerText = 'Cancelar';
+                document.getElementById('botao-cliente-salvar').hidden = false;
+            } else {
+                document.getElementById('cliente-nome').disabled = true;
+                document.getElementById('cliente-dataNascimento').disabled = true;
+                document.getElementById('cliente-cpf').disabled = true;
+                document.getElementById('cliente-celular').disabled = true;
+                document.getElementById('cliente-email').disabled = true;
+                document.getElementById('cliente-genero').disabled = true;
+                document.getElementById('botao-cliente').innerText = 'Editar';
+                document.getElementById('botao-cliente-salvar').hidden = true;
+            }
+        }
+        function editarEndereco() {
+            if (document.getElementById('endereco-rua').disabled == true) {
+                document.getElementById('endereco-rua').disabled = false;
+                document.getElementById('endereco-numero').disabled = false;
+                document.getElementById('endereco-complemento').disabled = false;
+                document.getElementById('endereco-cep').disabled = false;
+                document.getElementById('endereco-cidade').disabled = false;
+                document.getElementById('endereco-uf').disabled = false;
+                document.getElementById('btn-endereco').innerText = 'Cancelar';
+                document.getElementById('botao-endereco-salvar').hidden = false;
+            } else {
+                document.getElementById('endereco-rua').disabled = true;
+                document.getElementById('endereco-numero').disabled = true;
+                document.getElementById('endereco-complemento').disabled = true;
+                document.getElementById('endereco-cep').disabled = true;
+                document.getElementById('endereco-cidade').disabled = true;
+                document.getElementById('endereco-uf').disabled = true;
+                document.getElementById('btn-endereco').innerText = 'Editar';
+                document.getElementById('botao-endereco-salvar').hidden = true;
+            }
+        }
+    </script>
+</body>
+
+</html>
