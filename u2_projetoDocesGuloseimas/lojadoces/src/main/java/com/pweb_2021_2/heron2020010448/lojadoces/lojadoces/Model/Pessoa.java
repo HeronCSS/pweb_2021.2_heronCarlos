@@ -42,6 +42,9 @@ public class Pessoa {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Dependentes> dependentes;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Pedido> pedidos;
+
     /* Endereço */
     private String rua;
 

@@ -45,6 +45,7 @@ public class Pedido {
     private String numeroCartão;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "produto_id")
     private List<Produto> produtos;
 
     private String numeroCartao;

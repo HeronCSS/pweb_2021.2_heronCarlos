@@ -4,7 +4,7 @@
     color: purple;
 }
 
-input:disabled {
+input:disabled, #cliente-genero:disabled, #cliente-genero {
     color: purple;
     font-weight: 600;
     background-color: rgb(47, 131, 47);
@@ -97,6 +97,7 @@ li {
 .table-div {
     display: grid;
     justify-content: center;
+    margin-bottom: 5%;
 }
 
 .table.clientes, .table.produtos, .table.pedido {
@@ -261,6 +262,37 @@ li:hover {
 .flex-item {
     border: 3px solid purple;
     margin: 2%;
+    width: fit-content;
+}
+
+.pedido {
+    margin: 0;
+}
+
+.div-cadastrar-pedido {
+    float: right; 
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px; 
+    margin-top: -20%;
+    margin-right: 5%;
+    border: 5px solid purple;
+    padding: 3%;
+    background: linear-gradient(rgb(255, 1, 255), purple, rgb(93, 52, 93), rgb(42,42,42));
+}
+
+#div-prod-pedido {
+    display: none;
+    border: 5px solid purple;
+    padding: 2%;
+    width: 500px;
+    float: right;
+    margin-right: 2%;
+}
+
+.btn-addProd {
+    float: right;
+    margin-top: -10%;
 }
 
 
