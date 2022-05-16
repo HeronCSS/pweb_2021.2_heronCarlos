@@ -57,8 +57,8 @@
                 <input type="date" th:field="${dependente.dataNascimento}">
             </div>
     
-            <button type="submit">Cadastrar</button>
-            <button type="reset">Limpar</button>
+            <button type="submit" class="btn btn-secondary">Cadastrar</button>
+            <button type="reset" class="btn btn-secondary">Limpar</button>
         </div>
     </form>
     <form th:action="@{/cliente/{id}/dependentes/editar/{idDepe}(id=${id}, idDepe=${dependente2.id})}" th:method="put" th:object="${dependente2}" th:if="${dependente2 != null}">
@@ -85,71 +85,6 @@
         </div>
     </form>
 
-    <script>
-        var btn = document.getElementsByClassName('nav-item');
-
-btn[0].addEventListener('mouseover', function () {
-    btn[0].style.marginLeft = '0%'
-    btn[0].style.marginRight = '10%'
-    document.getElementsByClassName('active')[0].style.marginRight = '0%';
-    document.getElementsByClassName('active')[0].style.marginLeft = '0%';
-});
-btn[0].addEventListener('mouseout', function () {
-    btn[0].style.margin = '0%';
-    document.getElementsByClassName('active')[0].style.marginRight = '5%';
-    document.getElementsByClassName('active')[0].style.marginLeft = '5%';
-});
-
-btn[2].addEventListener('mouseover', function () {
-    btn[2].style.marginLeft = '15%'
-    btn[2].style.marginRight = '5%'
-    document.getElementsByClassName('active')[0].style.marginRight = '0%';
-    document.getElementsByClassName('active')[0].style.marginLeft = '0%';
-});
-btn[2].addEventListener('mouseout', function () {
-    btn[2].style.margin = '0%';
-    document.getElementsByClassName('active')[0].style.marginRight = '5%';
-    document.getElementsByClassName('active')[0].style.marginLeft = '5%';
-});
-
-//
-btn[3].addEventListener('mouseover', function () {
-    btn[3].style.marginLeft = '15%'
-    btn[3].style.marginRight = '5%'
-    document.getElementsByClassName('active')[0].style.marginRight = '0%';
-    document.getElementsByClassName('active')[0].style.marginLeft = '0%';
-});
-btn[3].addEventListener('mouseout', function () {
-    btn[3].style.margin = '0%';
-    document.getElementsByClassName('active')[0].style.marginRight = '5%';
-    document.getElementsByClassName('active')[0].style.marginLeft = '5%';
-});
-
-//
-btn[4].addEventListener('mouseover', function () {
-    btn[4].style.marginLeft = '15%'
-    btn[4].style.marginRight = '5%'
-    document.getElementsByClassName('active')[0].style.marginRight = '0%';
-    document.getElementsByClassName('active')[0].style.marginLeft = '0%';
-});
-btn[4].addEventListener('mouseout', function () {
-    btn[4].style.margin = '0%';
-    document.getElementsByClassName('active')[0].style.marginRight = '5%';
-    document.getElementsByClassName('active')[0].style.marginLeft = '5%';
-});
-
-//
-btn[5].addEventListener('mouseover', function () {
-    btn[5].style.marginLeft = '15%'
-    btn[5].style.marginRight = '5%'
-    document.getElementsByClassName('active')[0].style.marginRight = '0%';
-    document.getElementsByClassName('active')[0].style.marginLeft = '0%';
-});
-btn[5].addEventListener('mouseout', function () {
-    btn[5].style.margin = '0%';
-    document.getElementsByClassName('active')[0].style.marginRight = '5%';
-    document.getElementsByClassName('active')[0].style.marginLeft = '5%';
-});
-    </script>
+    <script th:src="@{/js/client.js}"></script>
 </body>
 </html>

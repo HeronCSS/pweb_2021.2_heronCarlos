@@ -61,11 +61,11 @@ li {
 
 .th.lastColumn {
     border-right: 2px solid purple;
-    padding: auto 0;
+    padding: 0.5rem 0.5rem;
 }
 
 .th.td-icon {
-    padding: auto;
+    padding: 0.5rem 0.5rem;
     width: 10px;
     margin: 0 auto;
 }
@@ -100,6 +100,21 @@ li {
     margin-bottom: 5%;
 }
 
+.table-div.pedido {
+    margin-top: 5%;
+    justify-content: start;
+    margin-left: 5%;
+}
+
+th, td {
+    padding: 0.5rem;
+}
+
+.pencil {
+    margin: 0 5px;
+    color: purple;
+}
+
 .table.clientes, .table.produtos, .table.pedido {
     color: purple;
     width: 1000px;
@@ -117,6 +132,12 @@ li {
     padding: 10px;
     width: max-content;
     display: inline-block;
+}
+
+.cliente-info.pedido-pagamento {
+    display: grid;
+    grid-row: 1;
+    margin-top: 10%;
 }
 
 .butao {

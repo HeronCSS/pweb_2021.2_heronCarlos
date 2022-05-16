@@ -39,13 +39,15 @@
             </div>
         </nav>
     </div>
-    <form th:action="@{/cliente/{idCliente}/pedidos/{id}/adicionar/{idProduto}(idProduto=${produtoID.id}, id=${pedido.id}, idCliente=${idCliente})}" th:object="${produtoID}" th:method="get">
+    <form th:action="@{/cliente/{idCliente}/pedidos/{id}/adicionar/(id=${pedido.id}, idCliente=${idCliente})}"
+        th:object="${product}" th:method="get">
         <div>
             <div>
                 <label>
                     <h3>Produtos</h3>
                 </label>
-                <select title="Selecione o produto" name="list-produtos" id="list-produtos" class="custom-select" th:field="*{id}">
+                <select title="Selecione o produto" name="list-produtos" id="list-produtos" class="custom-select"
+                    th:field="${product.id}">
                     <option class="option" value="" selected hidden>Selecione...</option>
                     <option th:each="prod : ${produtos}" th:value="${prod.id}" th:text="${prod.nomeProduto}"
                         id="option-produtos"></option>
@@ -92,62 +94,71 @@
         </div>
     </form>
 
-    <div>
+    <div class="table-div pedido">
         <table>
             <thead>
-                <th>Nome do Produto</th>
-                <th>Marca</th>
-                <th>Valor Unitario</th>
+                <th class="th">Nome do Produto</th>
+                <th class="th">Marca</th>
+                <th class="th lastColumn">Valor Unitario</th>
             </thead>
             <tbody>
                 <tr th:each="produto : ${produtosList}">
-                <td th:text="${produto.nomeProduto}"></td>
-                <td th:text="${produto.precoVenda}"></td>
-            </tr>
+                    <td class="th" th:text="${produto.nomeProduto}"></td>
+                    <td class="th" th:text="${produto.marca}"></td>
+                    <td class="th lastColumn" th:text="${produto.precoVenda}"></td>
+                </tr>
             </tbody>
         </table>
     </div>
 
+    <form th:action="@{/cliente/{idCliente}/pedidos/finalizar/{id}(idCliente=${idCliente}, id=${pedido.id})}" th:method="post" th:object="${pedido}">
+        <div class="cliente-info pedido-pagamento">
+            <div>
+                <label>
+                    <h3>Forma de Pagamento: *</h3>
+                </label>
+                <select th:field="${pedido.formaPagamento}">
+                    <option value="" hidden selected>Selecione...</option>
+                    <option value="Cartão de Crédito">Cartão de Crédito</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                    <option value="Pix por Chave Telefone">Pix por Chave Telefone</option>
+                    <option value="Pix por Chave Aléatoria">Pix por Chave Aléatoria</option>
+                    <option value="Pix por Chave CNPJ">Pix por Chave CNPJ</option>
+                    <option value="Pix por Chave CPF">Pix por Chave CPF</option>
+                </select>
+            </div>
+            <div>
+                <label>
+                    <h3>Numero do Cartão: *</h3>
+                </label>
+                <input type="text" placeholder="0000 0000 0000 0000" th:field="${pedido.numeroCartao}"><br>
+                <label>
+                    <h3>Código do Cartão</h3>
+                </label>
+                <input type="text" placeholder="000" th:field="${pedido.codigoCartao}">
+            </div>
+            <div>
+                <label>
+                    <h3>Código da Agência: *</h3>
+                </label>
+                <input type="text" placeholder="0000-1" th:field="${pedido.codigoCartao}"><br>
+                <label>
+                    <h3>Número da Conta: *</h3>
+                </label>
+                <input type="text" placeholder="000000-11" th:field="${pedido.numeroCartao}">
+            </div>
+            <div>
+                <button class="btn btn-secondary" type="reset">Limpar</button>
+                <button class="btn btn-secondary" type="submit">Finalizar Pedido</button>
+            </div>
+        </div>
+    </form>
+
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-        function cargosList(element) {
-            $(
-                `<option value="${element.id}" class="option">${element.nome}</option>`
-            ).insertBefore(".option");
-        }
-
-
-        $("#list-produtos").change(function () {
-            const idProd = $(this).prop('value');
-            console.log(idProd);
-            var requestURL = '/api/produtos/' + idProd;
-            var request = new XMLHttpRequest();
-            request.open('GET', requestURL);
-            request.responseType = 'json';
-            request.send();
-            request.onload = function () {
-                console.log(request.response);
-                if (request.response.length != 0) {
-                    $("#list-produtos").attr("disabled", false);
-                    $("#div-prod-pedido").toggle(true);
-                    $("#nome-produto").text(request.response.nomeProduto);
-                    $("#marca-produto").text(request.response.marca);
-                    $("#altura-produto").text(request.response.altura);
-                    $("#largura-produto").text(request.response.largura);
-                    $("#profundidade-produto").text(request.response.profundidade);
-                    $("#volume-produto").text(request.response.volume);
-                    $("#peso-produto").text(request.response.peso);
-                    $("#preco-produto").text(request.response.precoVenda);
-                    $("#img-produto").attr("src", request.response.linkImg);
-                } else {
-                    $("#boxAtribuicaoCargo").toggle(false);
-                    $("#nome-produto").text("Selecione o Produto para ver informações");
-                }
-            }
-        })
-    </script>
+    <script th:src="@{/js/pedidosList.js}"></script>
+    <script th:src="@{/js/client.js}"></script>
 </body>
 
 </html>

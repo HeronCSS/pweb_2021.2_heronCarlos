@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.Model.Dependentes;
 import com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.Model.Pedido;
 import com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.Model.Pessoa;
@@ -23,7 +24,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import lombok.Data;
 
 @Controller
 @RequestMapping
@@ -72,6 +76,7 @@ public class ClienteController {
         Pessoa cliente = pessoaRepo.findById(id).orElseThrow(() -> new Exception());
         mav.addObject("cliente", cliente);
         mav.addObject("dependentes", cliente.getDependentes());
+        mav.addObject("pedido", cliente.getPedidos());
         return mav;
     }
 
@@ -148,19 +153,31 @@ public class ClienteController {
     @GetMapping("/cliente/{idCliente}/pedidos/{id}")
     public ModelAndView adicionarProduto(@PathVariable("idCliente") Long idCliente, @PathVariable("id") Long id) throws Exception {
         ModelAndView mav = new ModelAndView("pedidos");
-        Pedido pedido = pedidoRepo.findById(id).orElseThrow(()-> new Exception());
+        Pedido pedido = pedidoRepo.findById(id).orElseThrow(()-> new Exception("Pedido deu errado!"));
+        mav.addObject("idCliente", idCliente);
         mav.addObject("produtosList", pedido.getProdutos());
         mav.addObject("pedido", pedido);
-        mav.addObject("produtoID", new Produto());
+        mav.addObject("product", new Produto());
         mav.addObject("produtos", produtoRepo.findAll());
         return mav;
     }
 
-    @GetMapping("/cliente/{idCliente}/pedidos/{id}/adicionar/{idProduto}")
-    public String adicionarPedido(@PathVariable("id") Long id, @PathVariable("idCliente") Long idCliente, @PathVariable("idProduto") Long idProduto) throws Exception {
+    @GetMapping("/cliente/{idCliente}/pedidos/{id}/adicionar/")
+    public String adicionarPedido(@PathVariable(name = "idCliente") Long idCliente, @PathVariable(name = "id") Long id, Produto produtoF) throws Exception {
         Pedido pedido = pedidoRepo.findById(id).orElseThrow(()-> new Exception());
+        Long idProduto = produtoF.getId();
         Produto produto = produtoRepo.findById(idProduto).orElseThrow(()->new Exception());
+        produto.setVezesVendido(+1);
         pedido.getProdutos().add(produto);
+        Double valorTotalPago = 0.0;
+        Double valorTotalProduto = 0.0;
+        for (int i = 0; i < pedido.getProdutos().size(); i++) {
+            valorTotalPago += pedido.getProdutos().get(i).getPrecoVenda();
+            valorTotalProduto += pedido.getProdutos().get(i).getPrecoVenda();
+        }
+        valorTotalPago += (valorTotalPago*(12.5))/100;
+        pedido.setValorTotalPago(valorTotalPago);
+        pedido.setValorTotalProduto(valorTotalProduto);
         pedidoRepo.save(pedido);
         return "redirect:/cliente/"+idCliente+"/pedidos/"+id;
     }
@@ -169,23 +186,31 @@ public class ClienteController {
     public String removerPedido(@PathVariable("idCliente") Long idCliente, @PathVariable("id") Long id, @PathVariable("idProduto") Long idProduto) throws Exception{
         Pedido pedido = pedidoRepo.findById(id).orElseThrow(()-> new Exception());
         Produto produto = produtoRepo.findById(idProduto).orElseThrow(()-> new Exception());
+        produto.setVezesVendido(-1);
         pedido.getProdutos().remove(produto);
         pedidoRepo.save(pedido);
         return "redirect:/cliente/"+idCliente+"/pedidos/"+id;
     }
 
-    @PostMapping("/meusPedidos/cadastrar")
-    public String postPedidos(Pedido pedido) {
-        pedidoRepo.save(pedido);
-        return "redirect:/meusPedidos";
+    @PostMapping("/cliente/{idCliente}/pedidos/finalizar/{id}")
+    public String postPedidos(@PathVariable("idCliente") Long idCliente, @PathVariable("id") Long id, Pedido pedido) throws Exception {
+        Pedido newPedido = pedidoRepo.findById(id).orElseThrow(()-> new Exception());
+        System.out.println(newPedido.getProdutos().get(0).getNomeProduto());
+        newPedido.setCodigoCartao(pedido.getCodigoCartao());
+        newPedido.setNumeroCartao(pedido.getNumeroCartao());
+        newPedido.setFormaPagamento(pedido.getFormaPagamento());
+        newPedido.setDataDaVenda(new Date());
+        pedidoRepo.save(newPedido);
+        return "redirect:/clientes/info/"+idCliente;
     }
 
-    @PutMapping("/meusPedidos/atualizar/{id}")
-    public String putPedido(@PathVariable Long id, Pedido pedido) throws Exception {
-        Pedido newPedido = pedidoRepo.findById(id).orElseThrow(() -> new Exception("Não encontrado!"));
-        BeanUtils.copyProperties(pedido, newPedido, "id");
-        pedidoRepo.save(newPedido);
-        return "redirect:/meusPedidos";
+    @GetMapping("/cliente/{idCliente}/pedidos/info/{id}")
+    public ModelAndView seePedido(@PathVariable("idCliente") Long idCliente, @PathVariable("id") Long id) throws Exception {
+        ModelAndView mav = new ModelAndView("pedidos-info");
+        System.out.println(pedidoRepo.findById(id).orElseThrow(() -> new Exception("Não encontrado!")).getProdutos().get(0).getNomeProduto());
+        mav.addObject("pedido", pedidoRepo.findById(id).orElseThrow(() -> new Exception("Não encontrado!")));
+        mav.addObject("produtos", pedidoRepo.findById(id).orElseThrow(() -> new Exception("Não encontrado!")).getProdutos());
+        return mav;
     }
 
     @DeleteMapping("/meusPedidos/remover/{id}")
