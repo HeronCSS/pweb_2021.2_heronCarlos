@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +10,6 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
-
 <body id="meuBody">
     <div class="divMain">
         <nav class="navMain">
@@ -40,51 +38,8 @@
         </nav>
     </div>
 
-    <div id="listarProdutos">
-        <div style="text-align: center;">
-            <h1>Listar Produtos</h1>
-        </div>
-        <div class="table-div">
-            <table class="table produtos">
-                <thead>
-                    <tr>
-                        <th class="th">Nome</th>
-                        <th class="th">Marca</th>
-                        <th class="th">Altura</th>
-                        <th class="th">Largura</th>
-                        <th class="th">Profundidade</th>
-                        <th class="th">Volume</th>
-                        <th class="th">Peso</th>
-                        <th class="th">Preço</th>
-                        <th class="th lastColumn">Data Cadastrado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="prod : ${produtos}">
-                        <td class="th" th:text="${prod.nomeProduto}"></td>
-                        <td class="th" th:text="${prod.marca}"></td>
-                        <td class="th" th:inline="text">[[${prod.altura}]] cm</td>
-                        <td class="th" th:inline="text">[[${prod.largura}]] cm</td>
-                        <td class="th" th:inline="text">[[${prod.profundidade}]] cm</td>
-                        <td class="th" th:inline="text">[[${prod.volume}]] cm³</td>
-                        <td class="th" th:inline="text">[[${prod.peso}]] g</td>
-                        <td class="th" th:inline="text">R$ [[${prod.precoVenda}]]</td>
-                        <td class="th lastColumn" th:text="${prod.dataCadastro}"></td>
-                        <td class="th"><a th:href="@{/produtos/atualizar/{id}(id=${prod.id})}"><i class="bi bi-pencil-square"></i></a></td>
-                        <td class="th lastColumn">
-                            <form th:action="@{/produtos/delete/{id}(id=${prod.id})}" th:method="delete">
-                                <a href=""><button type="submit" id="remover"><i class="bi bi-trash3-fill"></i></button></a>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="butao" id="divCadastrarNovo"><input type="button" class="btn btn-secondary" onclick="paginaCadastrar()"
-            value="Cadastrar Novo Produto"></div>
-    <form th:action="@{/produtos/cadastrar}" th:method="post" th:object="${produto}">
-        <div class="divCadastrarProd" id="divCadastrarProd" style="display: none;">
+    <form th:action="@{/produtos/atualizar/{id}(id=${produto.id})}" th:method="put" th:object="${produto}">
+        <div class="divCadastrarProd" id="divCadastrarProd">
 
             <div class="produto cadastrarLabel">
                 <h2>Cadastrar Produtos</h2>
@@ -164,5 +119,4 @@
 
     <script th:src="@{/js/produto.js}"></script>
 </body>
-
 </html>

@@ -6,18 +6,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.enums.FormaPagamento;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -44,7 +38,7 @@ public class Pedido {
 
     private String codigoCartao;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidos")
     private List<Produto> produtos = new ArrayList<>();
 
     private String numeroCartao;

@@ -33,3 +33,18 @@ $("#list-produtos").change(function () {
         }
     }
 })
+
+document.getElementById('select').addEventListener('click', function(){
+    if(document.getElementById('select').value == document.getElementById('option-1').value){
+        document.getElementById('divCartao').style.display = 'block';
+        document.getElementById('divBanco').style.display = 'none';
+    } else if (document.getElementById('select').value == document.getElementById('option-2').value){
+        document.getElementById('divCartao').style.display = 'none';
+        document.getElementById('divBanco').style.display = 'none';
+    }
+    
+    else {
+        document.getElementById('divCartao').style.display = 'none';
+        document.getElementById('divBanco').style.display = 'block';
+    }
+})

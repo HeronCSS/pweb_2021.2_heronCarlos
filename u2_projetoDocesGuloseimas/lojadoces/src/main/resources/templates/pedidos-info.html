@@ -41,7 +41,7 @@
     </div>
        
 
-    <div class="table-div pedido">
+    <div class="table-div pedido" style="display: inline-block;">
         <table>
             <thead>
                 <th class="th">Nome do Produto</th>
@@ -58,6 +58,11 @@
         </table>
     </div>
 
+    <span>
+        <form th:action="@{/cliente/{idCliente}/pedidos/excluir/{id}(idCliente=${idCliente}, id=${id})}" th:method="delete">
+        <button type="submit" class="btn btn-secondary">Excluir Pedido</button>
+    </form>
+    </span>
    
 
 

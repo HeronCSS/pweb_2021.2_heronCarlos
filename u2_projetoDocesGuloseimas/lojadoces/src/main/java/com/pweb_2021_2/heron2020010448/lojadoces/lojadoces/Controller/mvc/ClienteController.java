@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.pweb_2021_2.heron2020010448.dto.BuscarEntidadesDTO;
 import com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.Model.Dependentes;
 import com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.Model.Pedido;
 import com.pweb_2021_2.heron2020010448.lojadoces.lojadoces.Model.Pessoa;
@@ -58,6 +59,7 @@ public class ClienteController {
         // TODO: Fazer um metodo em ProdutoService que pega os 5 produtos mais vendidos
         // com Dois FOR aninhado e comparando o valor.
         mav.addObject("prod", prodLinks);
+        
         return mav;
     }
 
@@ -111,6 +113,13 @@ public class ClienteController {
         return mav;
     }
 
+    @GetMapping("/produtos/atualizar/{id}")
+    public ModelAndView editarProduto(@PathVariable("id") Long id) throws Exception{
+        ModelAndView mav = new ModelAndView("produtos-editar");
+        mav.addObject("produto", produtoRepo.findById(id).orElseThrow(()-> new Exception()));
+        return mav;
+    }
+
     @PostMapping("/produtos/cadastrar")
     public String postProdutos(Produto produto) throws Exception {
         produto.setDataCadastro(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
@@ -121,6 +130,7 @@ public class ClienteController {
     @PutMapping("/produtos/atualizar/{id}")
     public String putProduto(@PathVariable Long id, Produto produto) throws Exception {
         Produto newProduto = produtoRepo.findById(id).orElseThrow(() -> new Exception("Não encontrado!"));
+        produto.setDataCadastro(newProduto.getDataCadastro());
         BeanUtils.copyProperties(produto, newProduto, "id");
         produtoRepo.save(newProduto);
         return "redirect:/produtos";
@@ -141,13 +151,6 @@ public class ClienteController {
         cliente.getPedidos().add(new Pedido());
         pessoaRepo.save(cliente);
         return "redirect:/cliente/"+id+"/pedidos/"+cliente.getPedidos().get(index).getId();
-        /*
-         * ModelAndView mav = new ModelAndView("pedidos");
-         * mav.addObject("idCliente", id);
-         * mav.addObject("produtos", produtoRepo.findAll());
-         * mav.addObject("produtoID", new Produto());
-         * return mav;
-         */
     }
 
     @GetMapping("/cliente/{idCliente}/pedidos/{id}")
@@ -165,8 +168,7 @@ public class ClienteController {
     @GetMapping("/cliente/{idCliente}/pedidos/{id}/adicionar/")
     public String adicionarPedido(@PathVariable(name = "idCliente") Long idCliente, @PathVariable(name = "id") Long id, Produto produtoF) throws Exception {
         Pedido pedido = pedidoRepo.findById(id).orElseThrow(()-> new Exception());
-        Long idProduto = produtoF.getId();
-        Produto produto = produtoRepo.findById(idProduto).orElseThrow(()->new Exception());
+        Produto produto = produtoRepo.findById(produtoF.getId()).orElseThrow(()->new Exception());
         produto.setVezesVendido(+1);
         pedido.getProdutos().add(produto);
         Double valorTotalPago = 0.0;
@@ -195,7 +197,9 @@ public class ClienteController {
     @PostMapping("/cliente/{idCliente}/pedidos/finalizar/{id}")
     public String postPedidos(@PathVariable("idCliente") Long idCliente, @PathVariable("id") Long id, Pedido pedido) throws Exception {
         Pedido newPedido = pedidoRepo.findById(id).orElseThrow(()-> new Exception());
-        System.out.println(newPedido.getProdutos().get(0).getNomeProduto());
+        if(newPedido.getProdutos() == null || newPedido.getProdutos().isEmpty()){
+            return "redirect:/cliente/"+idCliente+"/pedidos/excluir/"+id;
+        }
         newPedido.setCodigoCartao(pedido.getCodigoCartao());
         newPedido.setNumeroCartao(pedido.getNumeroCartao());
         newPedido.setFormaPagamento(pedido.getFormaPagamento());
@@ -213,11 +217,12 @@ public class ClienteController {
         return mav;
     }
 
-    @DeleteMapping("/meusPedidos/remover/{id}")
-    public String deletePedido(@PathVariable Long id) {
+    @DeleteMapping("/cliente/{idCliente}/pedidos/excluir/{id}")
+    public String excluirPedido(@PathVariable("idCliente") Long idCliente, @PathVariable("id") Long id){
         pedidoRepo.deleteById(id);
-        return "redirect:/meusPedidos";
+        return "redirect:/clientes/info/"+idCliente;
     }
+
 
     //Dependentes
 
@@ -262,6 +267,16 @@ public class ClienteController {
         BeanUtils.copyProperties(dependente, newDependente, "id");
         dependeRepo.save(newDependente);
         return "redirect:/clientes/info/"+idCliente;
+    }
+
+    @PostMapping("/pesquisar")
+    public ModelAndView pesquisar(@RequestParam String search){
+        ModelAndView mav = new ModelAndView("index");
+        
+        mav.addObject("produto", produtoRepo.findByNome(search));
+        mav.addObject("cliente", pessoaRepo.findByNome(search));
+        mav.addObject("clienteCpf", pessoaRepo.findByCpf(search));
+        return mav;
     }
 
 }

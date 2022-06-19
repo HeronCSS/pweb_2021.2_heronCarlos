@@ -160,7 +160,7 @@
                 <tr th:each="pedido : ${pedido}">
                     <td class="th" th:text="${pedido.id}"></td>
                     <td class="th" th:text="${cliente.nome}"></td>
-                    <td class="th" th:text="${pedido.dataDaVenda}"></td>
+                    <td class="th" th:text="${#dates.format(pedido.dataDaVenda, 'dd/MM/yyyy')}"></td>
                     <td class="th" th:inline="text">R$ [[${pedido.valorTotalProduto}]]</td>
                     <td class="th" th:inline="text">R$ [[${pedido.valorTotalPago}]]</td>
                     <td class="th" th:text="${pedido.formaPagamento}"></td>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{style.css}">
 </head>
+
 <body id="meuBody">
     <div class="divMain">
         <nav class="navMain">
@@ -36,19 +38,80 @@
             </div>
         </nav>
     </div>
-    <div class="flex-container">
+
+    <form class="form-inline" th:action="@{/pesquisar}" method="post" style="width: 100px;">
+            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" style="display: inline-block;">
+            <button class="btn btn-outline-success my-2 my-sm-0" style="display: inline;" type="submit">Search</button>
+    </form>
+
+    <div class="table-div">
+    <table th:if="${produto.size() > 0}">
+        <thead>
+            <tr>
+                <th class="th">Nome</th>
+                <th class="th">Marca</th>
+                <th class="th lastColumn">Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="prod : ${produto}">
+                <td class="th" th:text="${prod.nomeProduto}"></td>
+                <td class="th" th:text="${prod.marca}"></td>
+                <td class="th lastColumn" th:text="${prod.precoVenda}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table title="jjff" th:if="${cliente.size() > 0}">
+        <thead>
+            <tr>
+                <th class="th">Nome</th>
+                <th class="th">CPF</th>
+                <th class="th lastColumn">Data de Nascimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${cliente}">
+                <td class="th" th:text="${cliente.nome}"></td>
+                <td class="th" th:text="${cliente.cpf}"></td>
+                <td class="th lastColumn" th:text="${cliente.dataNascimento}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table title="ddj" th:if="${clienteCpf}">
+        <thead>
+            <tr>
+                <th class="th">Nome</th>
+                <th class="th">CPF</th>
+                <th class="th lastColumn">Data de Nascimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clienteCpf}">
+                <td class="th" th:text="${cliente.nome}"></td>
+                <td class="th" th:text="${cliente.cpf}"></td>
+                <td class="th lastColumn" th:text="${cliente.dataNascimento}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="flex-container" th:if="${prod}">
         <div class="flex-item" th:each="prod : ${prod}">
             <img th:src="${prod}" alt="bolo de chocolate" width="205px" height="120px">
         </div>
     </div>
 
-
-
-
-
-
-
-
     <script th:src="@{js/index.js}"></script>
 </body>
+
 </html>

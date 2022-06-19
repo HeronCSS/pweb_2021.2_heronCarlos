@@ -117,7 +117,7 @@ th, td {
 
 .table.clientes, .table.produtos, .table.pedido {
     color: purple;
-    width: 1000px;
+    width: auto;
 }
 
 .table.pedido{
