@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt_br" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<!--Codigo Nuclear da Russia: 816616753-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <title>PWeb - by Xico Arruda</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/imagens/xico.ico">
+</head>
+
+<body
+    style="background-image: url(https://t3.ftcdn.net/jpg/04/21/85/20/360_F_421852062_oLJjfT88cczyu3u28Qy3M2V8xmO8L770.jpg); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
+    <div class="div">
+        <a href="/"><button class="inicio">Início</button></a>
+        <a href="/adicionarPessoa"><button>Adicionar pessoa</button></a>
+        <a href="/listarPessoas"><button>Listar pessoas</button></a>
+        
+        <a href="/contato"><button>Mande um e-Mail</button></a>
+        <a href="/sobre"><button class="sobre-site">Sobre o site</button></a>
+    </div>
+
+    <div class="main" style="width:800px; padding: 100px; white-space: pre-line; background-color: rgba(0, 0, 0, 0.7);">
+        <h2 style="color: white;" th:text="${frase}"></h2>
+        <a th:each="escolha : ${opcoes}"
+            th:href="@{/escolha/{idPessoa}/{idEscolha}(idPessoa=${pessoa.id_pessoa},idEscolha=${chave.get(escolha)})}"
+            style="color: white; text-decoration: none; white-space: initial;">
+            <h5 th:text="${escolha}"></h5>
+        </a>
+    </div>
+
+</body>
+
+</html>

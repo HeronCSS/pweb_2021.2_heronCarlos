@@ -7,18 +7,17 @@
     <link rel="shortcut icon" href="/imagens/xico.ico">
 </head>
 
-<body>
+<body th:style="'background:url(' + ${urlBackground} + '); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;'">
 
     <div class="div">
-        <a href="/public/index.html"><button>Início</button></a>
+        <a href="/"><button>Início</button></a>
         <a href="/adicionarPessoa"><button>Adicionar pessoa</button></a>
         <a href="/listarPessoas"><button class="listar">Listar pessoas</button></a>
-        <a href="/public/noticias.html"><button>Canais de notícia</button></a>
-        <a href="/public/contato.html"><button>Mande um e-Mail</button></a>
-        <a href="/public/sobre.html"><button class="sobre-site">Sobre o site</button></a>
+        <a href="/contato"><button>Mande um e-Mail</button></a>
+        <a href="/sobre"><button class="sobre-site">Sobre o site</button></a>
     </div>
 
-    <div class="div2">
+    <div class="div2 main">
         <h1>Lista de pessoas cadastradas:</h1>
     </div>
 
@@ -37,7 +36,7 @@
             <td th:text="${#dates.format(pessoa.dataNascimento, 'dd/mm/yyyy')}">Texto</td>
             <td th:text="${pessoa.email}">Texto</td>
             <td th:text="${pessoa.sexo}">Texto</td>
-            <td><a th:href="@{/adicionarPessoa/editar/{id}(id=${pessoa.id_pessoa})}">Editar</a></td>
+            <td><a th:href="@{/editar/{id}(id=${pessoa.id_pessoa})}">Editar</a></td>
             <td>
                 <form th:action="@{/adicionarPessoa/deletar/{id}(id=${pessoa.id_pessoa})}" th:method="delete">
                     <a href=""><button type="submit" id="remover">Remover</button></a>

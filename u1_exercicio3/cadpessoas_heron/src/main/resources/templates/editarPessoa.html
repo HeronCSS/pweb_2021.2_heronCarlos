@@ -6,16 +6,16 @@
     <link rel="shortcut icon" href="/imagens/xico.ico">
 </head>
 
-<body>
+<body th:style="'background:url(' + ${urlBackground} + '); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;'">
     <div class="div">
-        <a href="/public/index.html"><button>Início</button></a>
+        <a href="/"><button>Início</button></a>
         <a href="/adicionarPessoa"><button class="adicionar-pessoas">Adicionar pessoa</button></a>
         <a href="/listarPessoas"><button>Listar pessoas</button></a>
-        <a href="/public/noticias.html"><button>Canais de notícia</button></a>
-        <a href="/public/contato.html"><button>Mande um e-Mail</button></a>
-        <a href="/public/sobre.html"><button class="sobre-site">Sobre o site</button></a>
+        
+        <a href="/contato"><button>Mande um e-Mail</button></a>
+        <a href="/sobre"><button class="sobre-site">Sobre o site</button></a>
     </div>
-    <div class="div2">
+    <div class="div2 main">
         <h1>Formulário para edição de pessoas:</h1>
     </div>
     <form th:action="@{/adicionarPessoa/editar/{id}(id=${pessoaSalva.id_pessoa})}" th:object="${pessoaSalva}" th:method="put">

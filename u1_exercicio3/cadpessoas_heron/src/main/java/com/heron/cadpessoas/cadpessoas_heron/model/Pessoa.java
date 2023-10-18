@@ -32,6 +32,27 @@ public class Pessoa {
     @Column(name = "data_nascimento")
     private Date dataNascimento;
 
+    @Column(name = "apelido")
+    private String apelido;
+
+    @Column(name = "sequencia_decisao")
+    private Long sequenciaDecisao;
+
+    public String getApelido() {
+        return this.apelido;
+    }
+
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
+    public Long getSequenciaDecisao() {
+        return this.sequenciaDecisao;
+    }
+
+    public void setSequenciaDecisao(Long sequenciaDecisao) {
+        this.sequenciaDecisao = sequenciaDecisao;
+    }
 
     public Long getId_pessoa() {
         return this.id_pessoa;

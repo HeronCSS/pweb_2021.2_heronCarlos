@@ -7,14 +7,13 @@
     <link rel="shortcut icon" href="/imagens/xico.ico">
 </head>
 
-<body>
+<body th:style="'background:url(' + ${urlBackground} + '); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;'">
     <div class="div">
-        <a href="index.html"><button>Inicio</button></a>
+        <a href="/"><button>Inicio</button></a>
         <a href="/adicionarPessoa"><button>Adicionar pessoa</button></a>
         <a href="/listarPessoas"><button>Listar pessoas</button></a>
-        <a href="noticias.html"><button>Canais de noticia</button></a>
-        <a href="contato.html"><button class="contato">Mande um e-Mail</button></a>
-        <a href="sobre.html"><button class="sobre-site">Sobre o site</button></a>
+        <a href="/contato"><button class="contato">Mande um e-Mail</button></a>
+        <a href="/sobre"><button class="sobre-site">Sobre o site</button></a>
     </div>
     <div class="div2">
         <h1><a href="mailto:heron.santos@alunos.ufersa.edu.br">Mande um e-Mail para mim!</a></h1>
