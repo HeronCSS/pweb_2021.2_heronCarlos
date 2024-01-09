@@ -2,7 +2,7 @@
 <html lang="pt_br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>PWeb - by Xico Arruda</title>
+    <title>PP - by Heron</title>
     <link rel="stylesheet" th:href="@{/style.css}">
     <link rel="shortcut icon" href="/imagens/xico.ico">
 </head>
@@ -17,34 +17,36 @@
         <a href="/sobre"><button class="sobre-site">Sobre o site</button></a>
     </div>
 
-    <div class="div2 main">
+    <div class="main">
         <h1>Lista de pessoas cadastradas:</h1>
     </div>
 
-    <table>
+    <div class="main">
+        <table>
 
-        <tr>
-            <th>Nome completo</th>
-            <th>Data nascimento</th>
-            <th>e-Mail</th>
-            <th>Sexo</th>
-            <th>Editar</th>
-            <th>Remover</th>
-        </tr>
-        <tr th:each="pessoa : ${pessoa}">
-            <td th:text="${pessoa.nome}">Texto</td>
-            <td th:text="${#dates.format(pessoa.dataNascimento, 'dd/mm/yyyy')}">Texto</td>
-            <td th:text="${pessoa.email}">Texto</td>
-            <td th:text="${pessoa.sexo}">Texto</td>
-            <td><a th:href="@{/editar/{id}(id=${pessoa.id_pessoa})}">Editar</a></td>
-            <td>
-                <form th:action="@{/adicionarPessoa/deletar/{id}(id=${pessoa.id_pessoa})}" th:method="delete">
-                    <a href=""><button type="submit" id="remover">Remover</button></a>
-                </form>
-            </td>
-
-        </tr>
-    </table>
+            <tr>
+                <th>Nome completo</th>
+                <th>Data nascimento</th>
+                <th>e-Mail</th>
+                <th>Sexo</th>
+                <th>Editar</th>
+                <th>Remover</th>
+            </tr>
+            <tr style="color: white; text-decoration: none;" th:each="pessoa : ${pessoa}">
+                <td th:text="${pessoa.nome}">Texto</td>
+                <td th:text="${#dates.format(pessoa.dataNascimento, 'dd/mm/yyyy')}">Texto</td>
+                <td th:text="${pessoa.email}">Texto</td>
+                <td th:text="${pessoa.sexo}">Texto</td>
+                <td><a style="color: white; text-decoration: none;" th:href="@{/editar/{id}(id=${pessoa.id_pessoa})}">Editar</a></td>
+                <td>
+                    <form th:action="@{/adicionarPessoa/deletar/{id}(id=${pessoa.id_pessoa})}" th:method="delete">
+                        <a style="color: white; text-decoration: none;" href=""><button style="color: white; text-decoration: none;" type="submit" id="remover">Remover</button></a>
+                    </form>
+                </td>
+    
+            </tr>
+        </table>
+    </div>
 
 </body>
 

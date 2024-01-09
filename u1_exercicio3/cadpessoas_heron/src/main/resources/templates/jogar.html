@@ -4,7 +4,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-    <title>PWeb - by Xico Arruda</title>
+    <title>PP - by Heron</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="shortcut icon" href="/imagens/xico.ico">
 </head>
@@ -20,7 +20,7 @@
         <a href="/sobre"><button class="sobre-site">Sobre o site</button></a>
     </div>
 
-    <div class="main" style="width:800px; padding: 100px; white-space: pre-line; background-color: rgba(0, 0, 0, 0.7);">
+    <div class="main">
         <h2 style="color: white;" th:text="${frase}"></h2>
         <a th:each="escolha : ${opcoes}"
             th:href="@{/escolha/{idPessoa}/{idEscolha}(idPessoa=${pessoa.id_pessoa},idEscolha=${chave.get(escolha)})}"

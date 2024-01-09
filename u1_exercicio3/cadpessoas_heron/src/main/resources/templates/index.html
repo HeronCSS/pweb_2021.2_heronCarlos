@@ -4,12 +4,13 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-    <title>PWeb - by Xico Arruda</title>
+    <title>PP - by Heron</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="shortcut icon" href="/imagens/xico.ico">
 </head>
 
-<body th:style="'background:url(' + ${urlBackground} + '); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;'">
+<body
+    th:style="'background:url(' + ${urlBackground} + '); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;'">
     <div class="div">
         <a href="/"><button class="inicio">Início</button></a>
         <a href="/adicionarPessoa"><button>Adicionar pessoa</button></a>
@@ -18,16 +19,21 @@
         <a href="/sobre"><button class="sobre-site">Sobre o site</button></a>
     </div>
 
-    <h1 class="hidratese main">Escolha seu jogador:</h1>
+    <h1 class="hidratese h1index">Escolha seu jogador:</h1>
+    <div id="url">
+        <form th:action="@{/mudarUrl}" id="formUrl" method="get">
+            <label for="urlBackground">Mude o background do site: </label>
+            <input name="urlBackground" id="urlBackground" type="text"><button type="submit">Enviar</button>
+        </form>
+    </div>
 
-    <div>
+    <div class="main">
         <table style="margin-left: auto; margin-right: auto; width: max-content; padding: 50px;">
             <tr>
                 <th>Nome</th>
             </tr>
-            <tr
-             th:each="pessoa : ${pessoas}">
-                <td><a th:href="@{/jogar/{id}(id=${pessoa.id_pessoa})}" th:text="${pessoa.nome}"></a></td>
+            <tr th:each="pessoa : ${pessoas}">
+                <td><a style="color: white; text-decoration: none;" th:href="@{/jogar/{id}(id=${pessoa.id_pessoa})}" th:text="${pessoa.nome}"></a></td>
             </tr>
         </table>
     </div>
